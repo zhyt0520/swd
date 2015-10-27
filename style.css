@@ -1,6 +1,14 @@
 body{
 	font-family: 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
 }
+/*index.php*/
+#query{
+	width: 600px;
+	height: 450px;
+	border: 1px solid #000;
+	margin: 50px auto;
+}
+/*display.php*/
 #top{
 	width: 1300px;
 	height: 50px;
