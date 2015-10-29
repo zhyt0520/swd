@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>display</title>
+	<title><?php echo(isset($_REQUEST["jinghao"])?$_REQUEST["jinghao"]:false) ?></title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<?php require "config.php" ?>
 	<?php require "functions.php" ?>
