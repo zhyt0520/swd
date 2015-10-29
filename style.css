@@ -1,5 +1,6 @@
 body{
-	font-family: 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
+	font-family: "Segoe UI", Arial, "Microsoft Yahei", sans-serif;
+	width: 99%;
 }
 /*index.php*/
 #query{
@@ -10,19 +11,23 @@ body{
 }
 /*display.php*/
 #top{
-	width: 1300px;
+	width: 98%;
 	height: 50px;
 	border: 1px solid #000;
 }
 #left{
-	width: 900px;
-	height: 550px;
+	width: 69%;
+	min-width: 700px;
+	min-height: 550px;
 	border: 1px solid #000;
 	display: inline-block;
+	vertical-align: top;
 }
 #right{
-	width: 400px;
-	height: 550px;
+	width: 29%;
+	min-width: 300px;
+	min-height: 550px;
 	border: 1px solid #000;
 	display: inline-block;
+	vertical-align: top;
 }
