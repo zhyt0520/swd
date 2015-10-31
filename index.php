@@ -10,23 +10,9 @@
 </head>
 <body>
 	<div id="query">
-		<form action="display.php" method="get" target="_blank">
-			<select name="year">
-				<option value="2015">2015</option>
-				<option value="2014">2014</option>
-			</select>
-			<select name="month">
-				<option value="1">1</option>
-				<option value="2">2</option>
-			</select>
-			<select name="day">
-				<option value="1">1</option>
-				<option value="2">2</option>
-			</select>
-			<p>井号：<input type="text" name="jinghao" value="np2-3" /></p>
-			<input type="submit" value="确定" />
-		</form>
+	<?php query_form(); ?>
 	</div>
-	<script type="text/javascript" src="swa.js"></script>
+	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="swd.js"></script>
 </body>
 </html>

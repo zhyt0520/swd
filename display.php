@@ -13,6 +13,7 @@
 		<?php isset($conn)?dis_daily_data($conn):false ?>
 	</div><!-- note 这里用注释消除掉 #left 和 #right 两个标签段落之间默认的空格
 	--><div id="right"></div>
-	<script type="text/javascript" src="swa.js"></script>
+	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="swd.js"></script>
 </body>
 </html>

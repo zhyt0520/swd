@@ -31,3 +31,22 @@ body{
 	display: inline-block;
 	vertical-align: top;
 }
+table{
+	width: 100%;
+	border-collapse:collapse;
+}
+th{
+	font-size: 7px;
+	font-weight: normal;
+	border: 1px solid #000;
+	text-align: center;
+}
+td{
+	font-size: 7px;
+	font-weight: normal;
+	border: 1px solid #000;
+	text-align: center;
+}
+.BeiZhu{
+	max-width: 150px;
+}
