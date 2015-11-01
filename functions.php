@@ -61,11 +61,9 @@ function dis_daily_data($conn){
 		$result->execute();
 		$res=$result->fetchall(PDO::FETCH_ASSOC);
 		// note 返回结果数组的 key 是数据库字段名，区分大小写
-		// $th_array=array("日期","井号","班组","目前井别","区块单元","开采层位","冲程","冲次","油嘴","上行电流","下行电流","平衡率","生产时间","泵径","泵深","液面时间","液面","沉没度","理论排量","泵效","油压","套压","回压","日产液","日产油","日产气","含水","备注");
-		// 精简表头文字
-		$th_array=array("日期","井号","班组","井别","区块","层位","冲程","冲次","油嘴","上行电流","下行电流","平衡率","生产时间","泵径","泵深","液面时间","液面","沉没度","理排","泵效","油压","套压","回压","日产液","日产油","日产气","含水","备注");
-		$db_field_array=array("RiQi","JingHao","BanZu","MuQianJingBie","QuKuaiDanYuan","KaiCaiCengWei","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","PingHengLv","ShengChanShiJian","BengJing","BengShen","YeMianShiJian","YeMian","ChenMoDu","LiLunPaiLiang","BengXiao","YouYa","TaoYa","HuiYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu");
-		$left_th="<tr>";
+		global $th_array;
+		global $db_field_array;
+		$left_th="<tr id='th'>";
 		for($i=0;$i<count($th_array);$i++){
 			$left_th.="<th class='$db_field_array[$i]'>".$th_array[$i]."</th>";
 		}
@@ -79,7 +77,7 @@ function dis_daily_data($conn){
 			$left_td.="</tr>";
 		}
 		$left_table="<table>".$left_th.$left_td."</table>";
-		echo $left_table;
+		echo $left_table; 
 	}
 }
 // index.php 页面显示日期选择部分
@@ -110,7 +108,7 @@ function query_form(){
 	echo "<form action='display.php' method='get' target='_blank'>";
 	echo "<p>开始时间：".$begin_date."</p>";
 	echo "<p>截止时间：".$end_date."</p>";
-	echo "<p>井号：<input type='text' name='jinghao' value='np2-3' /></p>
+	echo "<p>井号：<input type='text' name='jinghao' value='NP23-2108' /></p>
 	<input type='submit' value='确定' />";
 	echo "</form>";
 }
