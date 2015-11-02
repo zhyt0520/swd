@@ -76,12 +76,34 @@ function dis_daily_data($conn){
 			}
 			$left_td.="</tr>";
 		}
-		$left_table="<table>".$left_th.$left_td."</table>";
+		$RiChanYe_sum=0;
+		$RiChanYou_sum=0;
+		$RiChanQi_sum=0;
+		for($i=0;$i<count($res);$i++){
+			$RiChanYe_sum+=$res[$i]["RiChanYe"];
+			$RiChanYou_sum+=$res[$i]["RiChanYou"];
+			$RiChanQi_sum+=$res[$i]["RiChanQi"];
+		}
+		$left_sum_td="";
+		$left_sum_td.="<td class='$db_field_array[0]'>合计</td>";
+		for($i=1;$i<count($th_array);$i++){
+			if($db_field_array[$i]=="RiChanYe"){
+				$left_sum_td.="<td class='$db_field_array[$i]'>".$RiChanYe_sum."</td>";
+			}elseif($db_field_array[$i]=="RiChanYou"){
+				$left_sum_td.="<td class='$db_field_array[$i]'>".$RiChanYou_sum."</td>";
+			}elseif($db_field_array[$i]=="RiChanQi"){
+				$left_sum_td.="<td class='$db_field_array[$i]'>".$RiChanQi_sum."</td>";
+			}else{
+				$left_sum_td.="<td class='$db_field_array[$i]'></td>";
+			}
+		}
+		$left_sum="<tr id='table_sum'>".$left_sum_td."</tr>";
+		$left_table="<table>".$left_th.$left_td.$left_sum."</table>";
 		echo $left_table; 
 	}
 }
 // index.php 页面显示日期选择部分
-function query_form(){
+function dis_query_form(){
 	function single_date_html($prefix){
 		$year_array=array(2010,2011,2012,2013,2014,2015,2016);
 		$month_array=array(1,2,3,4,5,6,7,8,9,10,11,12);
@@ -112,5 +134,24 @@ function query_form(){
 	<input type='submit' value='确定' />";
 	echo "</form>";
 }
+
+// display.php 页面显示功图图片
+function dis_indicator_diagram(){
+	$indicator_diagram_files=glob("../data/indicator_diagram/*");
+	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
+		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
+		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
+		$jinghao=$_REQUEST["jinghao"];
+		$right_imgs="";
+		$ii=[];
+		for($i=0;$i<count($indicator_diagram_files);$i++){
+			if(strstr($indicator_diagram_files[$i],$jinghao)){
+				$right_imgs.="<img class='indicator_diagram' src='$indicator_diagram_files[$i]'/><br>";
+			}
+		}
+		echo $right_imgs;
+	}
+}
+
 
 ?>

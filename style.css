@@ -1,6 +1,7 @@
 body{
 	font-family: "Segoe UI", Arial, "Microsoft Yahei", sans-serif;
 	width: 99%;
+	font-size: 0.8em;
 }
 /*index.php*/
 #query{
@@ -22,33 +23,45 @@ body{
 	/*border: 1px solid #000;*/
 	display: inline-block;
 	vertical-align: top;
+	text-align: center;
 }
 #right{
 	width: 29%;
 	min-width: 300px;
 	min-height: 550px;
-	border: 1px solid #000;
+	/*border: 1px solid #000;*/
 	display: inline-block;
 	vertical-align: top;
+	text-align: center;
 }
 table{
-	width: 100%;
+	/*width: 100%;*/
 	border-collapse:collapse;
+	margin: 0px auto;/* note 使表格本身左右居中*/
 }
 th{
-	font-size: 14px;
 	font-weight: normal;
 	border: 1px solid #000;
 	text-align: center;
-	background-color: #fff;
-	padding: 0px;
+	background-color: #ffa;
+	padding: 0px 1px;
 	margin: 0px;
+	width: auto;
 }
 td{
-	font-size: 14px;
 	font-weight: normal;
 	border: 1px solid #000;
 	text-align: center;
-	padding: 0px;
+	padding: 0px 1px;
 	margin: 0px;
+	width: auto;
+}
+.BeiZhu{
+	max-width: 150px;
+}
+#table_sum td{
+	font-weight: bold;
+}
+.indicator_diagram{
+	width: 300px;
 }
