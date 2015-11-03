@@ -6,7 +6,8 @@ function connect_db(){
 	try {
 		$conn=new PDO ($sdn,DB_USER,DB_PASSWORD);
 	} catch (PDOException $e) {
-		echo "数据库连接失败，请检查config.php文件内的配置数据。<br>错误信息：" . $e->getMessage();
+		echo "数据库连接失败，请检查config.php文件内的配置数据。<br>
+		错误信息：" . $e->getMessage();
 	}
 	// note 设置 utf8 ，否则中文会全显示成问号
 	$conn->query("set names utf8");
@@ -142,11 +143,19 @@ function dis_indicator_diagram(){
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
 		$jinghao=$_REQUEST["jinghao"];
+		// 截取文件路径中日期的字符串
+		$right_imgs_date=$indicator_diagram_files;
+		for($i=0;$i<count($right_imgs_date);$i++){
+			// 字符串最后一次出现参数字符的位置，不区分大小写
+			$pos=strripos($right_imgs_date[$i],"_");
+			// 从一个位置向右截取一定长度字符串
+			$right_imgs_date[$i]=substr($right_imgs_date[$i],$pos+1,10);
+		}
+		// html 输出 p 和 img
 		$right_imgs="";
-		$ii=[];
 		for($i=0;$i<count($indicator_diagram_files);$i++){
 			if(strstr($indicator_diagram_files[$i],$jinghao)){
-				$right_imgs.="<img class='indicator_diagram' src='$indicator_diagram_files[$i]'/><br>";
+				$right_imgs.="<p>".$right_imgs_date[$i]."</p><a class='preview' rel='$indicator_diagram_files[$i]'><img class='indicator_diagram' src='$indicator_diagram_files[$i]'/></a><br>";
 			}
 		}
 		echo $right_imgs;

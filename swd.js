@@ -31,19 +31,60 @@ $.fn.smartFloat=function(x){
 	var element=$(this);
 	var thetop=element.position().top;
 	var pos=element.css('position');
+	var wid=element.css('width');
+	var offsetleft=element.offset().left;
+	var offsettop=element.offset().top;
 	for(var i=0;i<all_column.length;i++){
 		$("."+all_column[i]).css("width",(parseInt(all_column_width[all_column[i]])+1)+"px");
 	}
 	$(window).scroll(function(){
 		var scrolls=$(this).scrollTop();
 		if(scrolls>thetop+x){
-			element.css({position:'fixed',top:0});
+			element.css({position:'fixed',top:0,width:wid,});
+			// element.offset({top:null,left:offsetleft,});
 		}else{
-			element.css({position:pos,top:thetop});
+			element.css({position:pos,top:thetop,width:wid,});
 		}
 	});
 };
 $("#th").smartFloat(0);
+$("#right").smartFloat(0);
+
+// 给 #rigth 的内容添加单独的滚动条
+$("#right").css("max-height",window.innerHeight-$("#top").css("height").substring(0,$("#top").css("height").length-2)+"px");
+
+// 从网上抄来的图片显示效果——鼠标滑过预览大图
+this.imagePreview = function(){	
+	/* CONFIG */
+		xOffset = 200;
+		yOffset = -720;
+		// these 2 variable determine popup's distance from the cursor
+		// you might want to adjust to get the right result
+	/* END CONFIG */
+	$("a.preview").hover(function(e){
+		this.t = this.title;
+		this.title = "";	
+		var c = (this.t != "") ? "<br/>" + this.t : "";
+		$("body").append("<div id='preview'><img src='"+ this.rel +"' alt='Image preview' />"+ c +"</div>");								 
+		$("#preview")
+			.css("top",(e.pageY - xOffset) + "px")
+			.css("left",(e.pageX + yOffset) + "px")
+			.fadeIn("fast");						
+    },
+	function(){
+		this.title = this.t;	
+		$("#preview").remove();
+    });	
+	$("a.preview").mousemove(function(e){
+		$("#preview")
+			.css("top",(e.pageY - xOffset) + "px")
+			.css("left",(e.pageX + yOffset) + "px");
+	});			
+};
+// starting the script on page load
+$(document).ready(function(){
+	imagePreview();
+});
 
 // 滚动到文档最底部
 // scroll(0,$(document).height());
