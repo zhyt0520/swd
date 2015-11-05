@@ -1,14 +1,5 @@
 console.time("js总执行时间")
 
-// 默认选中当前日期
-var mydate =new Date();
-$("select[name='begin_year'] option[value="+(mydate.getFullYear()-1)+"]").attr("selected",true);
-$("select[name='begin_month'] option[value="+(mydate.getMonth()+1)+"]").attr("selected",true);
-$("select[name='begin_day'] option[value="+mydate.getDate()+"]").attr("selected",true);
-$("select[name='end_year'] option[value="+mydate.getFullYear()+"]").attr("selected",true);
-$("select[name='end_month'] option[value="+(mydate.getMonth()+1)+"]").attr("selected",true);
-$("select[name='end_day'] option[value="+mydate.getDate()+"]").attr("selected",true);
-
 // 数据列的 class
 // note 注意 js 里面定义数组的方法 （关联数组貌似就直接用的对象）
 var all_column=["RiQi","JingHao","BanZu","MuQianJingBie","QuKuaiDanYuan","KaiCaiCengWei","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","PingHengLv","ShengChanShiJian","BengJing","BengShen","YeMianShiJian","YeMian","ChenMoDu","LiLunPaiLiang","BengXiao","YouYa","TaoYa","HuiYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
@@ -51,7 +42,7 @@ $("#th").smartFloat(0);
 $("#right").smartFloat(0);
 
 // 给 #rigth 的内容添加单独的滚动条
-$("#right").css("max-height",window.innerHeight-$("#top").css("height").substring(0,$("#top").css("height").length-2)+"px");
+$("#right").css("max-height",window.innerHeight-$("#top").css("height").substring(0,$("#top").css("height").length-2)-14+"px");
 
 // 从网上抄来的图片显示效果——鼠标滑过预览大图
 this.imagePreview = function(){	

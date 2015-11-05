@@ -103,6 +103,7 @@ function dis_daily_data($conn){
 		echo $left_table; 
 	}
 }
+
 // index.php 页面显示日期选择部分
 function dis_query_form(){
 	function single_date_html($prefix){
@@ -131,8 +132,10 @@ function dis_query_form(){
 	echo "<form action='display.php' method='get' target='_blank'>";
 	echo "<p>开始时间：".$begin_date."</p>";
 	echo "<p>截止时间：".$end_date."</p>";
-	echo "<p>井号：<input type='text' name='jinghao' value='NP23-2108' /></p>
-	<input type='submit' value='确定' />";
+	// note 用 autocomplete='off' 屏蔽输入框自动记录
+	echo "<p>井号：<input type='text' id='jinghao' name='jinghao' value='' autocomplete='off'/></p>";
+	echo "<div id='hint'></div>";
+	echo "<input type='submit' value='确定' />";
 	echo "</form>";
 }
 
@@ -142,7 +145,7 @@ function dis_indicator_diagram(){
 	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
-		$jinghao=$_REQUEST["jinghao"];
+		$jinghao=strtoupper($_REQUEST["jinghao"]);
 		// 截取文件路径中日期的字符串
 		$right_imgs_date=$indicator_diagram_files;
 		for($i=0;$i<count($right_imgs_date);$i++){

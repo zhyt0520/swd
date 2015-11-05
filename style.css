@@ -10,6 +10,11 @@ body{
 	border: 1px solid #000;
 	margin: 50px auto;
 }
+#hint{
+	display: none;
+	border: 1px solid #000;
+}
+
 /*display.php*/
 #top{
 	width: 98%;
@@ -17,7 +22,7 @@ body{
 	border: 1px solid #000;
 }
 #left{
-	width: 69%;
+	width: 74%;
 	min-width: 700px;
 	min-height: 550px;
 	/*border: 1px solid #000;*/
@@ -26,10 +31,10 @@ body{
 	text-align: center;
 }
 #right{
-	width: 29%;
+	width: 24%;
 	min-width: 300px;
 	min-height: 550px;
-	/*border: 1px solid #000;*/
+	border: 1px solid #000;
 	display: inline-block;
 	vertical-align: top;
 	text-align: center;
@@ -57,8 +62,17 @@ td{
 	margin: 0px;
 	width: auto;
 }
+.RiQi{
+	min-width: 70px;
+}
+.JingHao{
+	min-width: 75px;
+}
+.KaiCaiCengWei{
+	max-width: 120px;
+}
 .BeiZhu{
-	max-width: 150px;
+	max-width: 200px;
 }
 #table_sum td{
 	font-weight: bold;

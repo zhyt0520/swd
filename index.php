@@ -13,6 +13,6 @@
 	<?php dis_query_form(); ?>
 	</div>
 	<script type="text/javascript" src="jquery-1.11.3.js"></script>
-	<script type="text/javascript" src="swd.js"></script>
+	<script type="text/javascript" src="index.js"></script>
 </body>
 </html>

@@ -16,6 +16,6 @@
 		<?php dis_indicator_diagram() ?>
 	</div>
 	<script type="text/javascript" src="jquery-1.11.3.js"></script>
-	<script type="text/javascript" src="swd.js"></script>
+	<script type="text/javascript" src="display.js"></script>
 </body>
 </html>
