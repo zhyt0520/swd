@@ -62,18 +62,18 @@ function dis_daily_data($conn){
 		$result->execute();
 		$res=$result->fetchall(PDO::FETCH_ASSOC);
 		// note 返回结果数组的 key 是数据库字段名，区分大小写
-		global $th_array;
-		global $db_field_array;
+		global $TH_ARRAY;
+		global $DB_FIELD_ARRAY;
 		$left_th="<tr id='th'>";
-		for($i=0;$i<count($th_array);$i++){
-			$left_th.="<th class='$db_field_array[$i]'>".$th_array[$i]."</th>";
+		for($i=0;$i<count($TH_ARRAY);$i++){
+			$left_th.="<th class='$DB_FIELD_ARRAY[$i]'>".$TH_ARRAY[$i]."</th>";
 		}
 		$left_th.="</tr>";
 		$left_td="";
 		for($i=0;$i<count($res);$i++){
 			$left_td.="<tr>";
 			for($j=0;$j<count($res[$i]);$j++){
-				$left_td.="<td class='$db_field_array[$j]'>".$res[$i][$db_field_array[$j]]."</td>";
+				$left_td.="<td class='$DB_FIELD_ARRAY[$j]'>".$res[$i][$DB_FIELD_ARRAY[$j]]."</td>";
 			}
 			$left_td.="</tr>";
 		}
@@ -86,16 +86,16 @@ function dis_daily_data($conn){
 			$RiChanQi_sum+=$res[$i]["RiChanQi"];
 		}
 		$left_sum_td="";
-		$left_sum_td.="<td class='$db_field_array[0]'>合计</td>";
-		for($i=1;$i<count($th_array);$i++){
-			if($db_field_array[$i]=="RiChanYe"){
-				$left_sum_td.="<td class='$db_field_array[$i]'>".$RiChanYe_sum."</td>";
-			}elseif($db_field_array[$i]=="RiChanYou"){
-				$left_sum_td.="<td class='$db_field_array[$i]'>".$RiChanYou_sum."</td>";
-			}elseif($db_field_array[$i]=="RiChanQi"){
-				$left_sum_td.="<td class='$db_field_array[$i]'>".$RiChanQi_sum."</td>";
+		$left_sum_td.="<td class='$DB_FIELD_ARRAY[0]'>合计</td>";
+		for($i=1;$i<count($TH_ARRAY);$i++){
+			if($DB_FIELD_ARRAY[$i]=="RiChanYe"){
+				$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanYe_sum."</td>";
+			}elseif($DB_FIELD_ARRAY[$i]=="RiChanYou"){
+				$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanYou_sum."</td>";
+			}elseif($DB_FIELD_ARRAY[$i]=="RiChanQi"){
+				$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanQi_sum."</td>";
 			}else{
-				$left_sum_td.="<td class='$db_field_array[$i]'></td>";
+				$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'></td>";
 			}
 		}
 		$left_sum="<tr id='table_sum'>".$left_sum_td."</tr>";
@@ -108,7 +108,7 @@ function dis_daily_data($conn){
 function dis_query_form(){
 	function single_date_html($prefix){
 		$year_array=array(2010,2011,2012,2013,2014,2015,2016);
-		$month_array=array(1,2,3,4,5,6,7,8,9,10,11,12);
+		$monTH_ARRAY=array(1,2,3,4,5,6,7,8,9,10,11,12);
 		$day_array=array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
 		$sele_year="<select name='".$prefix."_year'>";
 		for($i=0;$i<count($year_array);$i++){ 
@@ -116,8 +116,8 @@ function dis_query_form(){
 		}
 		$sele_year.="</select>";
 		$sele_month="<select name='".$prefix."_month'>";
-		for($i=0;$i<count($month_array);$i++){ 
-			$sele_month.="<option value=".$month_array[$i].">".$month_array[$i]."</option>";
+		for($i=0;$i<count($monTH_ARRAY);$i++){ 
+			$sele_month.="<option value=".$monTH_ARRAY[$i].">".$monTH_ARRAY[$i]."</option>";
 		}
 		$sele_month.="</select>";
 		$sele_day="<select name='".$prefix."_day'>";

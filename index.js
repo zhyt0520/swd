@@ -11,18 +11,21 @@ $("select[name='end_day'] option[value="+mydate.getDate()+"]").attr("selected",t
 
 // 井号输入框下面显示下拉建议框
 // note jquery 里面输入框的取值是 val() 而不是 value
+$("#hint").css("width",$("input#jinghao").css("width"));
+
 $("input#jinghao").keyup(function(){
-	if($("input#jinghao").val()==""){
-		$("#hint").hide();
-	}else{
-		$("#hint").show();
+	if($("input#jinghao").val()!=""){
 		$.post("ajax.php",{mark:"hint",sub_jinghao:$("input#jinghao").val()},function(response){
 			if(response.length>0){
-				// ajax 有返回值
-				console.log(response);
 				$("#hint").html(response);
+				$("#hint").show();
+			}else{
+				$("#hint").html();
+				$("#hint").hide();
 			}
 		})
+	}else{
+		$("#hint").hide();
 	}
 });
 
