@@ -1,5 +1,3 @@
-console.time("js总执行时间")
-
 // 数据列的 class
 // note 注意 js 里面定义数组的方法 （关联数组貌似就直接用的对象）
 var all_column=["RiQi","JingHao","BanZu","MuQianJingBie","QuKuaiDanYuan","KaiCaiCengWei","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","PingHengLv","ShengChanShiJian","BengJing","BengShen","YeMianShiJian","YeMian","ChenMoDu","LiLunPaiLiang","BengXiao","YouYa","TaoYa","HuiYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
@@ -79,5 +77,3 @@ $(document).ready(function(){
 
 // 滚动到文档最底部
 // scroll(0,$(document).height());
-
-console.timeEnd("js总执行时间")

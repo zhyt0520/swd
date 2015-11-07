@@ -10,11 +10,15 @@ body{
 	border: 1px solid #000;
 	margin: 50px auto;
 }
+#jinghao_hint{
+	/*position: relative;*/
+}
 #hint{
 	display: none;
+	background-color: #fff;
 	border: 1px solid #000;
 	position: absolute;
-	/*left: auto;*/
+	/*left: 180px;*/
 	/*z-index: 2;*/
 }
 

@@ -133,7 +133,7 @@ function dis_query_form(){
 	echo "<p>开始时间：".$begin_date."</p>";
 	echo "<p>截止时间：".$end_date."</p>";
 	// note 用 autocomplete='off' 屏蔽输入框自动记录
-	echo "<p>井号：<input type='text' id='jinghao' name='jinghao' value='' autocomplete='off'/></p>";
+	echo "<div>井号：<input type='text' id='jinghao' name='jinghao' value='' autocomplete='off'/></div>";
 	echo "<div id='hint'></div>";
 	echo "<input type='submit' value='确定' />";
 	echo "</form>";
@@ -141,27 +141,36 @@ function dis_query_form(){
 
 // display.php 页面显示功图图片
 function dis_indicator_diagram(){
+	global $JINGHAO_ARRAY;
 	$indicator_diagram_files=glob("../data/indicator_diagram/*");
 	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
 		$jinghao=strtoupper($_REQUEST["jinghao"]);
-		// 截取文件路径中日期的字符串
-		$right_imgs_date=$indicator_diagram_files;
-		for($i=0;$i<count($right_imgs_date);$i++){
-			// 字符串最后一次出现参数字符的位置，不区分大小写
-			$pos=strripos($right_imgs_date[$i],"_");
-			// 从一个位置向右截取一定长度字符串
-			$right_imgs_date[$i]=substr($right_imgs_date[$i],$pos+1,10);
-		}
-		// html 输出 p 和 img
-		$right_imgs="";
-		for($i=0;$i<count($indicator_diagram_files);$i++){
-			if(strstr($indicator_diagram_files[$i],$jinghao)){
-				$right_imgs.="<p>".$right_imgs_date[$i]."</p><a class='preview' rel='$indicator_diagram_files[$i]'><img class='indicator_diagram' src='$indicator_diagram_files[$i]'/></a><br>";
+		$is_jinghao_right=false;
+		for($i=0;$i<count($JINGHAO_ARRAY);$i++){
+			if($jinghao==$JINGHAO_ARRAY[$i]){
+				$is_jinghao_right=true;
 			}
 		}
-		echo $right_imgs;
+		if($is_jinghao_right){
+			// 截取文件路径中日期的字符串
+			$right_imgs_date=$indicator_diagram_files;
+			for($i=0;$i<count($right_imgs_date);$i++){
+				// 字符串最后一次出现参数字符的位置，不区分大小写
+				$pos=strripos($right_imgs_date[$i],"_");
+				// 从一个位置向右截取一定长度字符串
+				$right_imgs_date[$i]=substr($right_imgs_date[$i],$pos+1,10);
+			}
+			// html 输出 p 和 img
+			$right_imgs="";
+			for($i=0;$i<count($indicator_diagram_files);$i++){
+				if(strstr($indicator_diagram_files[$i],$jinghao)){
+					$right_imgs.="<p>".$right_imgs_date[$i]."</p><a class='preview' rel='$indicator_diagram_files[$i]'><img class='indicator_diagram' src='$indicator_diagram_files[$i]'/></a><br>";
+				}
+			}
+			echo $right_imgs;
+		}
 	}
 }
 

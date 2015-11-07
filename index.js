@@ -1,5 +1,3 @@
-console.time("js总执行时间")
-
 // 默认选中当前日期
 var mydate =new Date();
 $("select[name='begin_year'] option[value="+(mydate.getFullYear()-1)+"]").attr("selected",true);
@@ -12,7 +10,7 @@ $("select[name='end_day'] option[value="+mydate.getDate()+"]").attr("selected",t
 // 井号输入框下面显示下拉建议框
 // note jquery 里面输入框的取值是 val() 而不是 value
 $("#hint").css("width",$("input#jinghao").css("width"));
-
+$("#hint").css("left",$("input#jinghao").offset().left);
 $("input#jinghao").keyup(function(){
 	if($("input#jinghao").val()!=""){
 		$.post("ajax.php",{mark:"hint",sub_jinghao:$("input#jinghao").val()},function(response){
@@ -28,5 +26,3 @@ $("input#jinghao").keyup(function(){
 		$("#hint").hide();
 	}
 });
-
-console.timeEnd("js总执行时间")
