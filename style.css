@@ -21,6 +21,9 @@ body{
 	/*left: 180px;*/
 	/*z-index: 2;*/
 }
+li{
+	list-style: none;
+}
 
 /*display.php*/
 #top{

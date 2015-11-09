@@ -19,11 +19,10 @@ if(isset($_REQUEST["mark"],$_REQUEST["sub_jinghao"])&&$_REQUEST["mark"]=="hint"&
 	if(count($hint_jinghao)>0){
 		$k=count($hint_jinghao)<10?count($hint_jinghao):10;
 		for($i=0;$i<$k;$i++){
-			$response.=$hint_jinghao[$i]."<br>";
+			$response.="<li>".$hint_jinghao[$i]."</li>";
 		}
 		echo $response;
 	}
-	
 }
 
 ?>

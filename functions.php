@@ -50,6 +50,43 @@ function connect_db(){
 	}
 }
 
+
+// index.php 页面显示查询部分
+function dis_query_form(){
+	function single_date_html($prefix){
+		$year_array=array(2010,2011,2012,2013,2014,2015,2016);
+		$monTH_ARRAY=array(1,2,3,4,5,6,7,8,9,10,11,12);
+		$day_array=array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
+		$sele_year="<select name='".$prefix."_year'>";
+		for($i=0;$i<count($year_array);$i++){ 
+			$sele_year.="<option value=".$year_array[$i].">".$year_array[$i]."</option>";
+		}
+		$sele_year.="</select>";
+		$sele_month="<select name='".$prefix."_month'>";
+		for($i=0;$i<count($monTH_ARRAY);$i++){ 
+			$sele_month.="<option value=".$monTH_ARRAY[$i].">".$monTH_ARRAY[$i]."</option>";
+		}
+		$sele_month.="</select>";
+		$sele_day="<select name='".$prefix."_day'>";
+		for($i=0;$i<count($day_array);$i++){ 
+			$sele_day.="<option value=".$day_array[$i].">".$day_array[$i]."</option>";
+		}
+		$sele_day.="</select>";
+		return $sele_year.$sele_month.$sele_day;
+	}
+	$begin_date=single_date_html("begin");
+	$end_date=single_date_html("end");
+	echo "<form action='display.php' method='get' target='_blank'>";
+	echo "<p>开始时间：".$begin_date."</p>";
+	echo "<p>截止时间：".$end_date."</p>";
+	// note 用 autocomplete='off' 屏蔽输入框自动记录
+	echo "<div>井号：<input type='text' id='jinghao' name='jinghao' value='' autocomplete='off'/></div>";
+	echo "<div id='hint'></div>";
+	echo "<br>";
+	echo "<input type='submit' value='确定' style='margin-left:30px'/><input type='reset' value='取消' style='margin-left:14px'/>";
+	echo "</form>";
+}
+
 // display.php 页面显示单井日数据表
 function dis_daily_data($conn){
 	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
@@ -102,41 +139,6 @@ function dis_daily_data($conn){
 		$left_table="<table>".$left_th.$left_td.$left_sum."</table>";
 		echo $left_table; 
 	}
-}
-
-// index.php 页面显示日期选择部分
-function dis_query_form(){
-	function single_date_html($prefix){
-		$year_array=array(2010,2011,2012,2013,2014,2015,2016);
-		$monTH_ARRAY=array(1,2,3,4,5,6,7,8,9,10,11,12);
-		$day_array=array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
-		$sele_year="<select name='".$prefix."_year'>";
-		for($i=0;$i<count($year_array);$i++){ 
-			$sele_year.="<option value=".$year_array[$i].">".$year_array[$i]."</option>";
-		}
-		$sele_year.="</select>";
-		$sele_month="<select name='".$prefix."_month'>";
-		for($i=0;$i<count($monTH_ARRAY);$i++){ 
-			$sele_month.="<option value=".$monTH_ARRAY[$i].">".$monTH_ARRAY[$i]."</option>";
-		}
-		$sele_month.="</select>";
-		$sele_day="<select name='".$prefix."_day'>";
-		for($i=0;$i<count($day_array);$i++){ 
-			$sele_day.="<option value=".$day_array[$i].">".$day_array[$i]."</option>";
-		}
-		$sele_day.="</select>";
-		return $sele_year.$sele_month.$sele_day;
-	}
-	$begin_date=single_date_html("begin");
-	$end_date=single_date_html("end");
-	echo "<form action='display.php' method='get' target='_blank'>";
-	echo "<p>开始时间：".$begin_date."</p>";
-	echo "<p>截止时间：".$end_date."</p>";
-	// note 用 autocomplete='off' 屏蔽输入框自动记录
-	echo "<div>井号：<input type='text' id='jinghao' name='jinghao' value='' autocomplete='off'/></div>";
-	echo "<div id='hint'></div>";
-	echo "<input type='submit' value='确定' />";
-	echo "</form>";
 }
 
 // display.php 页面显示功图图片
