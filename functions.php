@@ -76,14 +76,14 @@ function dis_query_form(){
 	}
 	$begin_date=single_date_html("begin");
 	$end_date=single_date_html("end");
-	echo "<form action='display.php' method='get' target='_blank'>";
+	echo "<form action='display.php' method='post' target='_blank'>";
 	echo "<p>开始时间：".$begin_date."</p>";
 	echo "<p>截止时间：".$end_date."</p>";
 	// note 用 autocomplete='off' 屏蔽输入框自动记录
 	echo "<div>井号：<input type='text' id='jinghao' name='jinghao' value='' autocomplete='off'/></div>";
 	echo "<div id='hint'></div>";
 	echo "<br>";
-	echo "<input type='submit' value='确定' style='margin-left:30px'/><input type='reset' value='取消' style='margin-left:14px'/>";
+	echo "<input type='submit' value='查询' style='margin-left:30px'/><input type='reset' value='清除' style='margin-left:14px'/>";
 	echo "</form>";
 }
 

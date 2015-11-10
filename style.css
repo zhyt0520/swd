@@ -24,6 +24,9 @@ body{
 li{
 	list-style: none;
 }
+li.li_selected{
+	background-color: rgb(218,233,254);
+}
 
 /*display.php*/
 #top{

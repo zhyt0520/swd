@@ -7,7 +7,7 @@ $("select[name='end_year'] option[value="+mydate.getFullYear()+"]").attr("select
 $("select[name='end_month'] option[value="+(mydate.getMonth()+1)+"]").attr("selected",true);
 $("select[name='end_day'] option[value="+mydate.getDate()+"]").attr("selected",true);
 
-// 井号输入框下面显示下拉建议框
+// hint 的位置和显隐
 // note jquery 里面输入框的取值是 val() 而不是 value
 $("#hint").css("width",$("input#jinghao").css("width"));
 $("#hint").css("left",$("input#jinghao").offset().left);
@@ -17,8 +17,9 @@ $("input#jinghao").keyup(function(){
 			if(response.length>0){
 				$("#hint").html(response);
 				$("#hint").show();
+				// $("#hint").children().first().css("background-color","rgb(218,233,254)");
+				$("#hint").children().first().attr("class","li_selected");
 			}else{
-				$("#hint").html();
 				$("#hint").hide();
 			}
 		})
@@ -27,7 +28,7 @@ $("input#jinghao").keyup(function(){
 	}
 });
 
-// 控制 hint 的显示和选取
+// hint li 的背景和选值
 $("#hint").on({
 	mouseover:function(){
 		$(this).css("background","rgb(218,233,254)");
@@ -42,10 +43,23 @@ $("#hint").on({
 		$("#hint").hide();
 	},
 },"li");
+// 输入框内点击鼠标出现 hint，页面内点击鼠标隐藏 hint
 $(document).on("click",function(){
-	if($(event.target).closest("input#jinghao").length>0&&$("input#jinghao").val()!=""){
+	if($(event.target).closest("input#jinghao").length>0 && $("input#jinghao").val()!=""){
 		$("#hint").show();
 	}else{
 		$("#hint").hide();
 	}
+});
+// keyCode 左37 上是38 右39 下是40
+$("input#jinghao").on({
+	keydown:function(){
+		// 上
+		if($(event.keyCode)==38){
+
+		// 下
+		}else if($(event.keyCode)==40){
+
+		}
+	},
 });
