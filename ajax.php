@@ -5,8 +5,6 @@ require "config.php";
 // 返回建议井号列表
 if(isset($_REQUEST["mark"],$_REQUEST["sub_jinghao"])&&$_REQUEST["mark"]=="hint"&&strlen($_REQUEST["sub_jinghao"])>0){
 	$sub_jinghao=strtoupper($_REQUEST["sub_jinghao"]);
-	// echo "sub_jinghao:".$sub_jinghao."<br>";
-	$hint_jinghao=null;
 	$hint_jinghao=[];
 	$j=0;
 	for($i=0;$i<count($JINGHAO_ARRAY);$i++){

@@ -39,8 +39,8 @@ $.fn.smartFloat=function(x){
 $("#th").smartFloat(0);
 $("#right").smartFloat(0);
 
-// 给 #rigth 的内容添加单独的滚动条
-$("#right").css("max-height",window.innerHeight-$("#top").css("height").substring(0,$("#top").css("height").length-2)-14+"px");
+// 控制 #right的最大高度，给 #rigth 的内容添加单独的滚动条
+$("#right").css("max-height",window.innerHeight-7);
 
 // 从网上抄来的图片显示效果——鼠标滑过预览大图
 this.imagePreview = function(){	
