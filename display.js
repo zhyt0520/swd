@@ -38,6 +38,7 @@ $.fn.smartFloat=function(x){
 };
 $("#th").smartFloat(0);
 $("#right").smartFloat(0);
+// $("#tab_ul").smartFloat(10)
 
 // 控制 #right的最大高度，给 #rigth 的内容添加单独的滚动条
 // $("#right").css("max-height",window.innerHeight-$("#top").css("height").substring(0,$("#top").css("height").length-2)-14+"px");
@@ -74,6 +75,27 @@ this.imagePreview = function(){
 // starting the script on page load
 $(document).ready(function(){
 	imagePreview();
+});
+
+// 右侧标签页切换
+$(".tab_head").click(function(){
+	var this_id=$(this).attr("id");
+	var pos=this_id.lastIndexOf("_");
+	var num=this_id.substr(pos+1,this_id.length);
+	$(".tab_content").hide();
+	$("#tab_content_"+num).show();
+});
+
+// 双击功图和液面的图片在新窗口打开
+// note 用逗号隔开两个选择器
+$(".indicator_diagram,.liquid_level").dblclick(function(){
+	var url=$(this).attr("src");
+	url=url.substr(2,url.length);
+	console.log(url)
+	var a=$('<a href="http://localhost'+url+'" target="_blank"></a>')[0];
+	var e=document.createEvent('MouseEvents');
+	e.initEvent('click',true,true);
+	a.dispatchEvent(e);
 });
 
 // 滚动到文档最底部

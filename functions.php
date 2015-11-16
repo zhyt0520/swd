@@ -143,12 +143,12 @@ function dis_daily_data($conn){
 
 // display.php 页面显示功图图片
 function dis_indicator_diagram(){
-	global $JINGHAO_ARRAY;
-	$indicator_diagram_files=glob("../data/indicator_diagram/*");
 	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
 		$jinghao=strtoupper($_REQUEST["jinghao"]);
+		global $JINGHAO_ARRAY;
+		$indicator_diagram_files=glob("../data/indicator_diagram/*");
 		$is_jinghao_right=false;
 		for($i=0;$i<count($JINGHAO_ARRAY);$i++){
 			if($jinghao==$JINGHAO_ARRAY[$i]){
@@ -168,7 +168,7 @@ function dis_indicator_diagram(){
 			$right_imgs="";
 			for($i=0;$i<count($indicator_diagram_files);$i++){
 				if(strstr($indicator_diagram_files[$i],$jinghao)){
-					$right_imgs.="<p>".$right_imgs_date[$i]."</p><a class='preview' rel='$indicator_diagram_files[$i]'><img class='indicator_diagram' src='$indicator_diagram_files[$i]'/></a><br>";
+					$right_imgs.="<a class='preview' rel='$indicator_diagram_files[$i]'><img class='indicator_diagram' src='$indicator_diagram_files[$i]'/></a><p>".$right_imgs_date[$i]."</p>";
 				}
 			}
 			echo $right_imgs;
@@ -176,5 +176,39 @@ function dis_indicator_diagram(){
 	}
 }
 
+// display.php 页面显示液面图片
+function dis_liquid_level(){
+	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
+		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
+		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
+		$jinghao=strtoupper($_REQUEST["jinghao"]);
+		global $JINGHAO_ARRAY;
+		$liquid_level_files=glob("../data/liquid_level/*");
+		$is_jinghao_right=false;
+		for($i=0;$i<count($JINGHAO_ARRAY);$i++){
+			if($jinghao==$JINGHAO_ARRAY[$i]){
+				$is_jinghao_right=true;
+			}
+		}
+		if($is_jinghao_right){
+			// 截取文件路径中日期的字符串
+			$right_imgs_date=$liquid_level_files;
+			for($i=0;$i<count($right_imgs_date);$i++){
+				// 字符串最后一次出现参数字符的位置，不区分大小写
+				$pos=strripos($right_imgs_date[$i],"Y");
+				// 从一个位置向右截取一定长度字符串
+				$right_imgs_date[$i]=substr($right_imgs_date[$i],$pos+1,10);
+			}
+			// html 输出 p 和 img
+			$right_imgs="";
+			for($i=0;$i<count($liquid_level_files);$i++){
+				if(strstr($liquid_level_files[$i],$jinghao)){
+					$right_imgs.="<a class='preview' rel='$liquid_level_files[$i]'><img class='liquid_level' src='$liquid_level_files[$i]'/></a><p>".$right_imgs_date[$i]."</p>";
+				}
+			}
+			echo $right_imgs;
+		}
+	}
+}
 
 ?>

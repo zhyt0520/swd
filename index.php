@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>single well data</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="index.css">
 	<style>body{text-align: center;}</style>
 	<?php require "config.php" ?>
 	<?php require "functions.php" ?>

@@ -1,0 +1,28 @@
+body{
+	font-family: "Segoe UI", Arial, "Microsoft Yahei", sans-serif;
+	width: 99%;
+	font-size: 0.8em;
+}
+#query{
+	width: 600px;
+	height: 450px;
+	border: 1px solid #000;
+	margin: 50px auto;
+}
+#jinghao_hint{
+	/*position: relative;*/
+}
+#hint{
+	display: none;
+	background-color: #fff;
+	border: 1px solid #000;
+	position: absolute;
+	/*left: 180px;*/
+	/*z-index: 2;*/
+}
+li{
+	list-style: none;
+}
+li.li_selected{
+	background-color: rgb(218,233,254);
+}
