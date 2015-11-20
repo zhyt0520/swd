@@ -76,31 +76,56 @@ function dis_query_form(){
 	}
 	$begin_date=single_date_html("begin");
 	$end_date=single_date_html("end");
+	global $FIELD_ARRAY;
+	foreach ($FIELD_ARRAY as $key => $value) {
+		$DB_FIELD_ARRAY[]=$key;
+		$TH_ARRAY[]=$value;
+	}
+	$field_checkbox="";
+	for ($i=0; $i < count($FIELD_ARRAY); $i++) { 
+		$field_checkbox.="<input type='checkbox' id='".$DB_FIELD_ARRAY[$i]."' name='field_checkbox[]' value='".$DB_FIELD_ARRAY[$i]."'/><label for='".$DB_FIELD_ARRAY[$i]."'>".$TH_ARRAY[$i]."</label><br>";
+	}
+	$query_form=
+		"<p>开始时间：".$begin_date."</p>".
+		"<p>截止时间：".$end_date."</p>".
+		"<div>井号：<input type='text' id='jinghao' name='jinghao' value='' autocomplete='off'/></div>".
+		"<div id='hint'></div>".
+		"<br>".
+		/*note 用 autocomplete='off' 屏蔽输入框自动记录*/
+		"<input type='submit' value='查询' style='margin-left:30px'/><input type='reset' value='清除' style='margin-left:14px'/>";
+	// 输出 html
 	echo "<form action='display.php' method='post' target='_blank'>";
-	echo "<p>开始时间：".$begin_date."</p>";
-	echo "<p>截止时间：".$end_date."</p>";
-	// note 用 autocomplete='off' 屏蔽输入框自动记录
-	echo "<div>井号：<input type='text' id='jinghao' name='jinghao' value='' autocomplete='off'/></div>";
-	echo "<div id='hint'></div>";
-	echo "<br>";
-	echo "<input type='submit' value='查询' style='margin-left:30px'/><input type='reset' value='清除' style='margin-left:14px'/>";
+	echo "<div id='field_checkbox'>".$field_checkbox."</div>";
+	echo "<div id='query_form'>".$query_form."</div>";
 	echo "</form>";
 }
 
 // display.php 页面显示单井日数据表
 function dis_daily_data($conn){
-	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
+	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"],$_REQUEST["field_checkbox"])){
+
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
 		$jinghao=$_REQUEST["jinghao"];
+		$field_checkbox=$_REQUEST["field_checkbox"];
+		// 把字段数组连成一条字符串
+		$field_str="";
+		foreach ($field_checkbox as $value) {
+			$field_str.=$value.",";
+		}
+		// 删除最后多余的一个逗号
+		$field_str=substr($field_str,0,strlen($field_str)-1);
 		// note 查询输入的字符串需要带引号
-		$query="select * from ".DB_TABLE_daily_data." where riqi>='".$begin_riqi."' and riqi<='".$end_riqi."' and jinghao='".$jinghao."';";
+		$query="select ".$field_str." from ".DB_TABLE_daily_data." where riqi>='".$begin_riqi."' and riqi<='".$end_riqi."' and jinghao='".$jinghao."';";
 		$result=$conn->prepare($query);
 		$result->execute();
 		$res=$result->fetchall(PDO::FETCH_ASSOC);
 		// note 返回结果数组的 key 是数据库字段名，区分大小写
-		global $TH_ARRAY;
-		global $DB_FIELD_ARRAY;
+		global $FIELD_ARRAY;
+		foreach ($field_checkbox as $key) {
+			$DB_FIELD_ARRAY[]=$key;
+			$TH_ARRAY[]=$FIELD_ARRAY[$key];
+		}
 		$left_th="<tr id='th'>";
 		for($i=0;$i<count($TH_ARRAY);$i++){
 			$left_th.="<th class='$DB_FIELD_ARRAY[$i]'>".$TH_ARRAY[$i]."</th>";
@@ -118,6 +143,7 @@ function dis_daily_data($conn){
 		$RiChanYou_sum=0;
 		$RiChanQi_sum=0;
 		for($i=0;$i<count($res);$i++){
+			// !!!
 			$RiChanYe_sum+=$res[$i]["RiChanYe"];
 			$RiChanYou_sum+=$res[$i]["RiChanYou"];
 			$RiChanQi_sum+=$res[$i]["RiChanQi"];

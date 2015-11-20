@@ -10,6 +10,7 @@ for(var i=0;i<hidden_column.length;i++){
 };
 
 // 获取数据列的列宽
+// !!!
 var all_column_width={};
 for(var i=0;i<dis_colum.length;i++){
 	all_column_width[dis_colum[i]]=$("th."+dis_colum[i]).css("width").substring(0,$("th."+dis_colum[i]).css("width").length-2);

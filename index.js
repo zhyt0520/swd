@@ -71,6 +71,8 @@ $("#hint").on({
 	},
 	// note 用 mousedown 会影响 .focus() ，猜 focus 是根据 mouseup 判断执行的
 	click:function(){
+		$(".li_selected").attr("class","li_unselected");
+		$(this).attr("class","li_selected");
 		$("input#jinghao").val($(this).text());
 		$("input#jinghao").focus();
 		$("#hint").hide();
