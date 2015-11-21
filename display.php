@@ -8,7 +8,9 @@
 	<?php $conn=connect_db(); ?>
 </head>
 <body>
-	<div id="top"></div>
+	<div id="top">
+		<p><?php echo(isset($_REQUEST["jinghao"])?$_REQUEST["jinghao"]:false) ?></p>
+	</div>
 	<div id="left">
 		<?php isset($conn)?dis_daily_data($conn):false ?>
 	</div><!-- note 这里用注释消除掉 #left 和 #right 两个标签段落之间默认的空格

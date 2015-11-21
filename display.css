@@ -4,15 +4,21 @@ body{
 	font-size: 0.8em;
 }
 #top{
-	width: 98%;
-	height: 50px;
+	width: 99%;
+	height: auto;
 	border: 1px solid #000;
+	text-align: center;
+	margin: 0px;
+}
+#top p{
+	vertical-align: middle;
+	font-size: 1.2em;
+	margin: 0px;
 }
 #left{
-	width: 74%;
+	width: 75%;
 	min-width: 700px;
 	min-height: 550px;
-	/*border: 1px solid #000;*/
 	display: inline-block;
 	vertical-align: top;
 	text-align: center;
@@ -28,7 +34,6 @@ body{
 	overflow: auto;
 }
 table{
-	/*width: 100%;*/
 	border-collapse:collapse;
 	margin: 0px auto;/* note 使表格本身左右居中*/
 }
@@ -55,10 +60,96 @@ td{
 .JingHao{
 	min-width: 75px;
 }
+.BanZu{
+
+}
+.MuQianJingBie{
+
+}
+.QuKuaiDanYuan{
+	min-width: 90px;
+}
 .KaiCaiCengWei{
 	max-width: 120px;
 }
+.ChongCheng{
+	min-width: 28px;
+}
+.ChongCi{
+	min-width: 28px;
+}
+.YouZui{
+	min-width: 28px;
+}
+.ShangXingDianLiu{
+	min-width: 33px;
+	max-width: 33px;
+}
+.XiaXingDianLiu{
+	min-width: 33px;
+	max-width: 33px;
+}
+.PingHengLv{
+
+}
+.ShengChanShiJian{
+	min-width: 53px;
+}
+.BengJing{
+	min-width: 28px;
+	max-width: 28px;
+}
+.BengShen{
+	min-width: 30px;
+	max-width: 30px;
+}
+.YeMianShiJian{
+
+}
+.YeMian{
+	min-width: 45px;
+	max-width: 45px;
+}
+.ChenMoDu{
+	min-width: 30px;
+	max-width: 30px;
+}
+.LiLunPaiLiang{
+	min-width: 30px;
+	max-width: 30px;
+}
+.BengXiao{
+	min-width: 28px;
+	max-width: 28px;
+}
+.YouYa{
+	min-width: 28px;
+	max-width: 28px;
+}
+.TaoYa{
+	min-width: 28px;
+	max-width: 28px;
+}
+.HuiYa{
+	min-width: 28px;
+}
+.RiChanYe{
+	min-width: 40px;
+	max-width: 40px;
+}
+.RiChanYou{
+	min-width: 40px;
+	max-width: 40px;
+}
+.RiChanQi{
+	min-width: 40px;
+}
+.HanShui{
+	min-width: 28px;
+	max-width: 28px;
+}
 .BeiZhu{
+	/*min-width: 200px;*/
 	max-width: 200px;
 }
 #table_sum td{
@@ -91,7 +182,6 @@ ul{
 }
 .tab_head{
 	display: inline-block;
-	/*margin: 0px 7px;*/
 	padding: 3px 7px;
 	cursor: pointer;
 	border: 1px solid #000;

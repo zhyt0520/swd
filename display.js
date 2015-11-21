@@ -1,19 +1,14 @@
 // 数据列的 class
 // note 注意 js 里面定义数组的方法 （关联数组貌似就直接用的对象）
-var all_column=["RiQi","JingHao","BanZu","MuQianJingBie","QuKuaiDanYuan","KaiCaiCengWei","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","PingHengLv","ShengChanShiJian","BengJing","BengShen","YeMianShiJian","YeMian","ChenMoDu","LiLunPaiLiang","BengXiao","YouYa","TaoYa","HuiYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
-var hidden_column=["BanZu","MuQianJingBie","QuKuaiDanYuan","ShangXingDianLiu","XiaXingDianLiu","PingHengLv","YeMianShiJian","HuiYa"];
-var dis_colum=["RiQi","JingHao","KaiCaiCengWei","ChongCheng","ChongCi","YouZui","ShengChanShiJian","BengJing","BengShen","YeMian","ChenMoDu","LiLunPaiLiang","BengXiao","YouYa","TaoYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
-
-// 隐藏 hidden_column 数组内标记的数据列
-for(var i=0;i<hidden_column.length;i++){
-	$("."+hidden_column[i]).css("display","none");
-};
+var dis_column=[];
+for(var i=0;i<$("th").length;i++){
+	dis_column[i]=$("th").eq(i).attr("class");
+}
 
 // 获取数据列的列宽
-// !!!
-var all_column_width={};
-for(var i=0;i<dis_colum.length;i++){
-	all_column_width[dis_colum[i]]=$("th."+dis_colum[i]).css("width").substring(0,$("th."+dis_colum[i]).css("width").length-2);
+var dis_column_width={};
+for(var i=0;i<dis_column.length;i++){
+	dis_column_width[dis_column[i]]=$("th."+dis_column[i]).css("width").substring(0,$("th."+dis_column[i]).css("width").length-2);
 }
 
 // 表格的表头浮动固定
@@ -24,8 +19,8 @@ $.fn.smartFloat=function(x){
 	var wid=element.css('width');
 	var offsetleft=element.offset().left;
 	var offsettop=element.offset().top;
-	for(var i=0;i<all_column.length;i++){
-		$("."+all_column[i]).css("width",(parseInt(all_column_width[all_column[i]])+1)+"px");
+	for(var i=0;i<dis_column.length;i++){
+		$("."+dis_column[i]).css("width",(parseInt(dis_column_width[dis_column[i]])+1)+"px");
 	}
 	$(window).scroll(function(){
 		var scrolls=$(this).scrollTop();

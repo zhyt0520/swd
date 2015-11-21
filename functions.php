@@ -139,30 +139,32 @@ function dis_daily_data($conn){
 			}
 			$left_td.="</tr>";
 		}
-		$RiChanYe_sum=0;
-		$RiChanYou_sum=0;
-		$RiChanQi_sum=0;
-		for($i=0;$i<count($res);$i++){
-			// !!!
-			$RiChanYe_sum+=$res[$i]["RiChanYe"];
-			$RiChanYou_sum+=$res[$i]["RiChanYou"];
-			$RiChanQi_sum+=$res[$i]["RiChanQi"];
-		}
-		$left_sum_td="";
-		$left_sum_td.="<td class='$DB_FIELD_ARRAY[0]'>合计</td>";
-		for($i=1;$i<count($TH_ARRAY);$i++){
-			if($DB_FIELD_ARRAY[$i]=="RiChanYe"){
-				$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanYe_sum."</td>";
-			}elseif($DB_FIELD_ARRAY[$i]=="RiChanYou"){
-				$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanYou_sum."</td>";
-			}elseif($DB_FIELD_ARRAY[$i]=="RiChanQi"){
-				$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanQi_sum."</td>";
-			}else{
-				$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'></td>";
-			}
-		}
-		$left_sum="<tr id='table_sum'>".$left_sum_td."</tr>";
-		$left_table="<table>".$left_th.$left_td.$left_sum."</table>";
+		// 暂时不删
+		// 添加最底部合计行
+		// $RiChanYe_sum=0;
+		// $RiChanYou_sum=0;
+		// $RiChanQi_sum=0;
+		// for($i=0;$i<count($res);$i++){
+		// 	$RiChanYe_sum+=$res[$i]["RiChanYe"];
+		// 	$RiChanYou_sum+=$res[$i]["RiChanYou"];
+		// 	$RiChanQi_sum+=$res[$i]["RiChanQi"];
+		// }
+		// $left_sum_td="";
+		// $left_sum_td.="<td class='$DB_FIELD_ARRAY[0]'>合计</td>";
+		// for($i=1;$i<count($TH_ARRAY);$i++){
+		// 	if($DB_FIELD_ARRAY[$i]=="RiChanYe"){
+		// 		$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanYe_sum."</td>";
+		// 	}elseif($DB_FIELD_ARRAY[$i]=="RiChanYou"){
+		// 		$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanYou_sum."</td>";
+		// 	}elseif($DB_FIELD_ARRAY[$i]=="RiChanQi"){
+		// 		$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanQi_sum."</td>";
+		// 	}else{
+		// 		$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'></td>";
+		// 	}
+		// }
+		// $left_sum="<tr id='table_sum'>".$left_sum_td."</tr>";
+		// 暂时不删
+		$left_table="<table>".$left_th.$left_td./*$left_sum.*/"</table>";
 		echo $left_table; 
 	}
 }

@@ -1,3 +1,9 @@
+// 默认选中部分 checkbox
+var checked_checkbox=["RiQi","JingHao","QuKuaiDanYuan","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","ShengChanShiJian","BengJing","BengShen","YeMian","ChenMoDu","BengXiao","YouYa","TaoYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
+for(var i=0;i<checked_checkbox.length;i++){
+	$("input#"+checked_checkbox[i]).attr("checked","checked");
+}
+
 // 默认选中当前日期
 var mydate =new Date();
 $("select[name='begin_year'] option[value="+(mydate.getFullYear()-1)+"]").attr("selected",true);
@@ -50,29 +56,34 @@ $("input#jinghao").keydown(function(){
 		}
 	// 回车
 	}else if(event.keyCode==13){
-		// 若输入框内字符串不等于 hint 的第一条，把值填入输入框
+		// 若输入框内字符串不等于选中的 hint，把值填入输入框
 		if($("input#jinghao").val()!=$(".li_selected").text()){
 			event.preventDefault();
 			$("input#jinghao").val($(".li_selected").text());
 			$("input#jinghao").focus();
 			$("#hint").hide();
 		}
-		// 否则输入框内字符串等于 hint 第一条，不阻止默认动作，即提交表单进行查询
+		// 否则输入框内字符串等于选中的 hint ，不阻止默认动作，即提交表单进行查询
 	}
 });
 
 // hint li 的背景和选值
 $("#hint").on({
 	mouseover:function(){
-		$(this).css("background","rgb(218,233,254)");
+		$(".li_selected").attr("class","li_unselected");
+		$(this).attr("class","li_selected");
 	},
 	mouseleave:function(){
-		$(this).css("background","rgb(255,255,255)");
+		if($(this).attr("data-tmp","li_selected")){
+			$(this).attr("data-tmp","");
+		}else{
+			$(this).attr("class","li_unselected");
+		}
 	},
 	// note 用 mousedown 会影响 .focus() ，猜 focus 是根据 mouseup 判断执行的
 	click:function(){
-		$(".li_selected").attr("class","li_unselected");
 		$(this).attr("class","li_selected");
+		$(this).attr("data-tmp","li_selected")
 		$("input#jinghao").val($(this).text());
 		$("input#jinghao").focus();
 		$("#hint").hide();
