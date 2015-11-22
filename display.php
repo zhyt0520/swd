@@ -16,8 +16,8 @@
 	</div><!-- note 这里用注释消除掉 #left 和 #right 两个标签段落之间默认的空格
 	--><div id="right">
 		<ul id="tab_ul">
-			<li class="tab_head" id="tab_1">功图</li>
-			<li class="tab_head" id="tab_2">液面</li>
+			<li class="tab_head tab_selected" id="tab_1">功图</li>
+			<li class="tab_head tab_unselected" id="tab_2">液面</li>
 		</ul>
 		<div class="tab_content" id="tab_content_1">
 			<?php dis_indicator_diagram() ?>

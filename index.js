@@ -1,5 +1,5 @@
 // 默认选中部分 checkbox
-var checked_checkbox=["RiQi","JingHao","QuKuaiDanYuan","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","ShengChanShiJian","BengJing","BengShen","YeMian","ChenMoDu","BengXiao","YouYa","TaoYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
+var checked_checkbox=["RiQi","JingHao","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","ShengChanShiJian","BengJing","BengShen","YeMian","ChenMoDu","BengXiao","YouYa","TaoYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
 for(var i=0;i<checked_checkbox.length;i++){
 	$("input#"+checked_checkbox[i]).attr("checked","checked");
 }

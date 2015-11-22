@@ -26,7 +26,7 @@ body{
 #right{
 	width: 24%;
 	min-width: 300px;
-	min-height: 550px;
+	min-height: 600px;
 	border: 1px solid #000;
 	display: inline-block;
 	vertical-align: top;
@@ -160,6 +160,13 @@ td{
 }
 .liquid_level{
 	width: 300px;
+}
+/*功图液面*/
+.tab_selected{
+	background-color: #99f !important;
+}
+.tab_unselected{
+	background-color: #fff !important;
 }
 img{
 	border: 1px solid #000;

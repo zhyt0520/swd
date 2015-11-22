@@ -75,6 +75,9 @@ $(document).ready(function(){
 
 // 右侧标签页切换
 $(".tab_head").click(function(){
+	$(this).attr("class","tmp");
+	$(".tab_selected").attr("class","tab_head tab_unselected");
+	$(this).attr("class","tab_head tab_selected");
 	var this_id=$(this).attr("id");
 	var pos=this_id.lastIndexOf("_");
 	var num=this_id.substr(pos+1,this_id.length);
@@ -95,4 +98,4 @@ $(".indicator_diagram,.liquid_level").dblclick(function(){
 });
 
 // 滚动到文档最底部
-// scroll(0,$(document).height());
+scroll(0,$(document).height());
