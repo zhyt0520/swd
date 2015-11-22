@@ -80,6 +80,7 @@ td{
 }
 .YouZui{
 	min-width: 28px;
+	max-width: 28px;
 }
 .ShangXingDianLiu{
 	min-width: 33px;
@@ -93,7 +94,9 @@ td{
 
 }
 .ShengChanShiJian{
-	min-width: 53px;
+	min-width: 30px;
+	max-width: 30px;
+	overflow: hidden;
 }
 .BengJing{
 	min-width: 28px;
@@ -119,8 +122,8 @@ td{
 	max-width: 30px;
 }
 .BengXiao{
-	min-width: 28px;
-	max-width: 28px;
+	min-width: 32px;
+	max-width: 32px;
 }
 .YouYa{
 	min-width: 28px;
