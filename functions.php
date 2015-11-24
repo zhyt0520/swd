@@ -92,7 +92,7 @@ function dis_query_form(){
 		"<div id='hint'></div>".
 		"<br>".
 		/*note 用 autocomplete='off' 屏蔽输入框自动记录*/
-		"<input type='submit' value='查询' style='margin-left:30px'/><input type='reset' value='清除' style='margin-left:14px'/>";
+		"<input type='submit' value='查询' /><input type='reset' value='清除' />";
 	// 输出 html
 	echo "<form action='display.php' method='post' target='_blank'>";
 	echo "<div id='field_checkbox'>".$field_checkbox."</div>";

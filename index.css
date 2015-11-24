@@ -23,17 +23,21 @@ body{
 	vertical-align: top;
 	margin: 80px 0px 0px 80px;
 }
-#jinghao_hint{
-
-}
 #hint{
 	display: none;
 	background-color: #fff;
 	border: 1px solid #000;
 	position: absolute;
 }
+input[type='submit']{
+	margin-left: 80px;
+}
+input[type='reset']{
+	margin-left: 20px;
+}
 li{
 	list-style: none;
+	padding: 3px 10px;
 }
 li.li_selected{
 	background-color: rgb(218,233,254) !important;
