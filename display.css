@@ -16,15 +16,15 @@ body{
 	margin: 0px;
 }
 #left{
-	width: 75%;
-	min-width: 700px;
+	/*width: 75%;*/
+	min-width: 600px;
 	min-height: 550px;
 	display: inline-block;
 	vertical-align: top;
 	text-align: center;
 }
 #right{
-	width: 24%;
+	/*width: 24%;*/
 	min-width: 300px;
 	min-height: 600px;
 	border: 1px solid #000;

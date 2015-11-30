@@ -98,4 +98,4 @@ $(".indicator_diagram,.liquid_level").dblclick(function(){
 });
 
 // 滚动到文档最底部
-scroll(0,$(document).height());
+// scroll(0,$(document).height());

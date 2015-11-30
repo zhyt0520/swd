@@ -21,7 +21,7 @@ $("#hint").css("left",$("input#jinghao").offset().left);
 // note jquery 里面输入框的取值是 val() 而不是 value
 // note 需要用 keyup ，否则执行 post 的时候输入的值还没赋给 input
 $("input#jinghao").keyup(function(){
-	if($("input#jinghao").val()!="" && event.keyCode!=38 && event.keyCode!=40){
+	if($("input#jinghao").val()!="" && event.keyCode!=13 && event.keyCode!=38 && event.keyCode!=40){
 		$.post("ajax.php",{mark:"hint",sub_jinghao:$("input#jinghao").val()},function(response){
 			if(response.length>0){
 				$("#hint").html(response);
