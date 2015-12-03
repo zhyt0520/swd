@@ -26,7 +26,7 @@ body{
 #right{
 	/*width: 24%;*/
 	min-width: 300px;
-	min-height: 600px;
+	/*min-height: 600px;*/
 	border: 1px solid #000;
 	display: inline-block;
 	vertical-align: top;
@@ -159,10 +159,10 @@ td{
 	font-weight: bold;
 }
 .indicator_diagram{
-	width: 300px;
+	width: 280px;
 }
 .liquid_level{
-	width: 300px;
+	width: 280px;
 }
 /*功图液面*/
 .tab_selected{

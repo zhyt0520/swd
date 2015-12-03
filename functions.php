@@ -189,13 +189,21 @@ function dis_indicator_diagram(){
 			for($i=0;$i<count($right_imgs_date);$i++){
 				// 字符串最后一次出现参数字符的位置，不区分大小写
 				$pos=strripos($right_imgs_date[$i],"_");
+				// 截取文件名中日期部分的字符串
 				// 从一个位置向右截取一定长度字符串
 				$right_imgs_date[$i]=substr($right_imgs_date[$i],$pos+1,10);
+			}
+			// 比较日期
+			$begin_time=mktime(0,0,0,$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["begin_year"]);
+			$end_time=mktime(0,0,0,$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["end_year"]);
+			$right_imgs_time=[];
+			for($i=0;$i<count($right_imgs_date);$i++){
+				$right_imgs_time[$i]=mktime(0,0,0,substr($right_imgs_date[$i],5,2),substr($right_imgs_date[$i],8,2),substr($right_imgs_date[$i],0,4));
 			}
 			// html 输出 p 和 img
 			$right_imgs="";
 			for($i=0;$i<count($indicator_diagram_files);$i++){
-				if(strstr($indicator_diagram_files[$i],$jinghao)){
+				if(strstr($indicator_diagram_files[$i],$jinghao)&&$begin_time<$right_imgs_time[$i]&&$right_imgs_time[$i]<$end_time){
 					$right_imgs.="<a class='preview' rel='$indicator_diagram_files[$i]'><img class='indicator_diagram' src='$indicator_diagram_files[$i]'/></a><p>".$right_imgs_date[$i]."</p>";
 				}
 			}
@@ -204,6 +212,7 @@ function dis_indicator_diagram(){
 	}
 }
 
+// ！！！显示功图和液面的代码绝大部分重复
 // display.php 页面显示液面图片
 function dis_liquid_level(){
 	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
@@ -227,10 +236,17 @@ function dis_liquid_level(){
 				// 从一个位置向右截取一定长度字符串
 				$right_imgs_date[$i]=substr($right_imgs_date[$i],$pos+1,10);
 			}
+			// 比较日期
+			$begin_time=mktime(0,0,0,$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["begin_year"]);
+			$end_time=mktime(0,0,0,$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["end_year"]);
+			$right_imgs_time=[];
+			for($i=0;$i<count($right_imgs_date);$i++){
+				$right_imgs_time[$i]=mktime(0,0,0,substr($right_imgs_date[$i],5,2),substr($right_imgs_date[$i],8,2),substr($right_imgs_date[$i],0,4));
+			}
 			// html 输出 p 和 img
 			$right_imgs="";
 			for($i=0;$i<count($liquid_level_files);$i++){
-				if(strstr($liquid_level_files[$i],$jinghao)){
+				if(strstr($liquid_level_files[$i],$jinghao)&&$begin_time<$right_imgs_time[$i]&&$right_imgs_time[$i]<$end_time){
 					$right_imgs.="<a class='preview' rel='$liquid_level_files[$i]'><img class='liquid_level' src='$liquid_level_files[$i]'/></a><p>".$right_imgs_date[$i]."</p>";
 				}
 			}
