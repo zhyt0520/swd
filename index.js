@@ -1,7 +1,7 @@
 // 默认选中部分 checkbox
 var checked_checkbox=["RiQi","JingHao","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","ShengChanShiJian","BengJing","BengShen","YeMian","ChenMoDu","BengXiao","YouYa","TaoYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
 for(var i=0;i<checked_checkbox.length;i++){
-	$("input#"+checked_checkbox[i]).attr("checked","checked");
+	$("input#"+checked_checkbox[i]).prop("checked","checked");
 }
 
 // 默认选中当前日期
@@ -99,4 +99,25 @@ $(document).on("click",function(){
 	}else{
 		$("#hint").hide();
 	}
+});
+
+// checkbox 功能按钮
+// note 区分 attr 和 prop
+$("#select_all").click(function(){
+	$("input[type='checkbox']").prop("checked",true);
+});
+$("#unselect_all").click(function(){
+	$("input[type='checkbox']").prop("checked",false);
+});
+$("#reset_default").click(function(){
+	$("input[type='checkbox']").prop("checked",false);
+	for(var i=0;i<checked_checkbox.length;i++){
+		$("input#"+checked_checkbox[i]).prop("checked","checked");
+	}
+});
+$("#save_chose").click(function(){
+	
+});
+$("#clear_save").click(function(){
+	
 });

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo(isset($_REQUEST["jinghao"])?$_REQUEST["jinghao"]:false) ?></title>
 	<link rel="stylesheet" type="text/css" href="display.css">
 	<?php require "config.php" ?>
 	<?php require "functions.php" ?>
 	<?php $conn=connect_db(); ?>
+	<title><?php dis_title() ?></title>
 </head>
 <body>
 	<div id="top">

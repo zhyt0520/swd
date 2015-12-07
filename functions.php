@@ -93,11 +93,30 @@ function dis_query_form(){
 		"<br>".
 		/*note 用 autocomplete='off' 屏蔽输入框自动记录*/
 		"<input type='submit' value='查询' /><input type='reset' value='清除' />";
+	$fun_button=
+		"<button type='button' class='fun_button' id='select_all'>全选</button>".
+		"<button type='button' class='fun_button' id='unselect_all'>全不选</button>".
+		"<button type='button' class='fun_button' id='reset_default'>恢复默认</button>".
+		"<button type='button' class='fun_button' id='save_chose'>保存选择</button>".
+		"<button type='button' class='fun_button' id='clear_save'>清除保存</button>";
 	// 输出 html
 	echo "<form action='display.php' method='post' target='_blank'>";
+	echo "<div id=fun_button>".$fun_button."</div>";
 	echo "<div id='field_checkbox'>".$field_checkbox."</div>";
 	echo "<div id='query_form'>".$query_form."</div>";
 	echo "</form>";
+}
+
+// display.php 页面标题title
+function dis_title(){
+	if(isset($_REQUEST["jinghao"])){
+		if(strstr(strtoupper($_REQUEST["jinghao"]),"NP23-")){
+			$str_pos=strpos($_REQUEST["jinghao"],"-");
+			echo substr(strtoupper($_REQUEST["jinghao"]),$str_pos+1);
+		}else{
+			echo strtoupper($_REQUEST["jinghao"]);
+		}
+	}
 }
 
 // display.php 页面显示单井日数据表
