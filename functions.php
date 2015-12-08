@@ -97,8 +97,8 @@ function dis_query_form(){
 		"<button type='button' class='fun_button' id='select_all'>全选</button>".
 		"<button type='button' class='fun_button' id='unselect_all'>全不选</button>".
 		"<button type='button' class='fun_button' id='reset_default'>恢复默认</button>".
-		"<button type='button' class='fun_button' id='save_chose'>保存选择</button>".
-		"<button type='button' class='fun_button' id='clear_save'>清除保存</button>";
+		"<button type='button' class='fun_button' id='save_checkbox_chose'>保存选择</button>".
+		"<button type='button' class='fun_button' id='clear_checkbox_save'>清除保存</button>";
 	// 输出 html
 	echo "<form action='display.php' method='post' target='_blank'>";
 	echo "<div id=fun_button>".$fun_button."</div>";

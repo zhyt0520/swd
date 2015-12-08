@@ -1,7 +1,27 @@
 // 默认选中部分 checkbox
-var checked_checkbox=["RiQi","JingHao","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","ShengChanShiJian","BengJing","BengShen","YeMian","ChenMoDu","BengXiao","YouYa","TaoYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
-for(var i=0;i<checked_checkbox.length;i++){
-	$("input#"+checked_checkbox[i]).prop("checked","checked");
+var custom_checked_checkbox="";
+var all_cookie="";
+all_cookie=document.cookie;
+if(all_cookie.indexOf("save_checkbox_chose")!=-1){
+	// note substr参数为开始index和长度；substring参数为开始index和结尾index
+	custom_checked_checkbox=all_cookie.substr(all_cookie.indexOf("save_checkbox_chose")+20,$("input[type='checkbox']").length);
+}
+var default_checked_checkbox=["RiQi","JingHao","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","ShengChanShiJian","BengJing","BengShen","YeMian","ChenMoDu","BengXiao","YouYa","TaoYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
+if(custom_checked_checkbox==""){
+	for(var i=0;i<default_checked_checkbox.length;i++){
+		$("input#"+default_checked_checkbox[i]).prop("checked",true);
+	}
+}else{
+	// note $("input[type='checkbox']")[i].prop()报错
+	var i=0;
+	$("input[type='checkbox']").each(function(){
+		if(custom_checked_checkbox.substr(i,1)==1){
+			$(this).prop("checked",true);
+		}else{
+			$(this).prop("checked",false);
+		}
+		i++;
+	});
 }
 
 // 默认选中当前日期
@@ -48,7 +68,6 @@ $("input#jinghao").keydown(function(){
 		}
 	// 下
 	}else if(event.keyCode==40){
-		console.log("zzz")
 		if($(".li_selected").next().length>0){
 			$(".li_selected").attr("class","tmp");
 			$(".tmp").next().attr("class","li_selected");
@@ -111,13 +130,28 @@ $("#unselect_all").click(function(){
 });
 $("#reset_default").click(function(){
 	$("input[type='checkbox']").prop("checked",false);
-	for(var i=0;i<checked_checkbox.length;i++){
-		$("input#"+checked_checkbox[i]).prop("checked","checked");
+	for(var i=0;i<default_checked_checkbox.length;i++){
+		$("input#"+default_checked_checkbox[i]).prop("checked",true);
 	}
 });
-$("#save_chose").click(function(){
-	
+$("#save_checkbox_chose").click(function(){
+	// 用只包含0和1的字符串保存checkbox选择的数据
+	var save_checkbox_chose="";
+	$("input[type='checkbox']").each(function(){
+		if($(this).prop("checked")){
+			save_checkbox_chose+="1";
+		}else{
+			save_checkbox_chose+="0";
+		}
+	});
+	// 用javascript（非query）设置cookie
+	var today=new Date();
+	var expireDay=new Date();
+	var msPerYear=1000*60*60*24*365;
+	expireDay.setTime(today.getTime()+msPerYear);
+	document.cookie="save_checkbox_chose="+save_checkbox_chose+";expires="+expireDay.toGMTString();
 });
-$("#clear_save").click(function(){
-	
+$("#clear_checkbox_save").click(function(){
+	var today=new Date();
+	document.cookie="save_checkbox_chose=;expires="+today.toGMTString();
 });

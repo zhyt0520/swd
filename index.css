@@ -13,13 +13,14 @@ body{
 	display: inline-block;
 	width: auto;
 	height: auto;
-	border: 1px solid #000;
 	vertical-align: middle;
+	padding: 10px;
 	margin-left: 30px;
+	border: 1px solid #777;
 }
 .fun_button{
 	display: block;
-	margin: auto;
+	margin: 4px auto;
 }
 #field_checkbox{
 	border: 1px solid #000;

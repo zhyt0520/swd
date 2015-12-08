@@ -90,7 +90,6 @@ $(".tab_head").click(function(){
 $(".indicator_diagram,.liquid_level").dblclick(function(){
 	var url=$(this).attr("src");
 	url=url.substr(2,url.length);
-	console.log(url)
 	var a=$('<a href="http://localhost'+url+'" target="_blank"></a>')[0];
 	var e=document.createEvent('MouseEvents');
 	e.initEvent('click',true,true);
