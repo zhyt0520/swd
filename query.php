@@ -27,7 +27,7 @@ session_start();
 	}
 	?>
 	</div>
-	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="query.js"></script>
 </body>
 </html>
@@ -73,7 +73,7 @@ function dis_query_form(){
 		"<div id='hint'></div>".
 		"<br>".
 		/*note 用 autocomplete='off' 屏蔽输入框自动记录*/
-		"<input type='submit' value='查询' /><input type='reset' value='清除' />";
+		"<input type='submit' value='查询' /><input type='button' value='清除' id='input_qingchu'/>";
 	$fun_button=
 		"<button type='button' class='fun_button' id='select_all'>全选</button>".
 		"<button type='button' class='fun_button' id='unselect_all'>全不选</button>".

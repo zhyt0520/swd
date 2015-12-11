@@ -129,6 +129,12 @@ $(document).on("click",function(){
 	}
 });
 
+// 清除按钮
+$("#input_qingchu").click(function(){
+	event.preventDefault();
+	$("input#jinghao").val("");
+});
+
 // checkbox 功能按钮
 // note 区分 attr 和 prop
 $("#select_all").click(function(){

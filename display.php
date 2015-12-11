@@ -26,7 +26,7 @@
 			<?php dis_liquid_level() ?>
 		</div>
 	</div>
-	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="display.js"></script>
 </body>
 </html>
