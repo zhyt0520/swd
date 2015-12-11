@@ -1,0 +1,75 @@
+body{
+	font-family: "Segoe UI", Arial, "Microsoft Yahei", sans-serif;
+	width: 99%;
+	font-size: 0.8em;
+}
+a{
+	color: #00f;
+	cursor: pointer;
+}
+a:visited{
+	color: #00f;
+}
+a:hover{
+	color: #f00;
+}
+#div_user_info{
+	width: 768px;
+	margin: 20px auto 5px auto;
+}
+#query{
+	width: 768px;
+	border: 1px solid #000;
+	padding: 20px;
+	margin: 0px auto;
+}
+#fun_button{
+	display: inline-block;
+	width: auto;
+	height: auto;
+	vertical-align: middle;
+	padding: 10px;
+	margin-left: 30px;
+	border: 1px solid #777;
+}
+.fun_button{
+	display: block;
+	margin: 4px auto;
+}
+#field_checkbox{
+	border: 1px solid #000;
+	display: inline-block;
+	text-align: left;
+	padding: 0px 5px;
+	margin: 0px 50px;
+	vertical-align: middle;
+}
+#query_form{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+#hint{
+	display: none;
+	background-color: #fff;
+	border: 1px solid #000;
+	position: absolute;
+}
+input[type='submit']{
+	margin-left: 80px;
+}
+input[type='reset']{
+	margin-left: 20px;
+}
+li{
+	list-style: none;
+	padding: 3px 10px;
+}
+li.li_selected{
+	background-color: rgb(218,233,254) !important;
+	font-weight: bold;
+}
+li.li_unselected{
+	background-color: rgb(255,255,255) !important;
+	font-weight: normal;
+}

@@ -1,59 +1,22 @@
 body{
 	font-family: "Segoe UI", Arial, "Microsoft Yahei", sans-serif;
-	width: 99%;
+}
+#div_login{
+	width: 300px;
+	height: 200px;
+	border: 1px solid #000;
+	text-align: center;
+	margin: 50px auto;
+	padding: 20px 0px;
+
+}
+input{
+	margin: 3px;
+}
+label[for="input_is_save_login_status"]{
 	font-size: 0.8em;
 }
-#query{
-	width: 768px;
-	border: 1px solid #000;
-	padding: 20px;
-	margin: 28px auto;
-}
-#fun_button{
-	display: inline-block;
-	width: auto;
-	height: auto;
-	vertical-align: middle;
-	padding: 10px;
-	margin-left: 30px;
-	border: 1px solid #777;
-}
-.fun_button{
-	display: block;
-	margin: 4px auto;
-}
-#field_checkbox{
-	border: 1px solid #000;
-	display: inline-block;
-	text-align: left;
-	padding: 0px 5px;
-	margin: 0px 50px;
-	vertical-align: middle;
-}
-#query_form{
-	display: inline-block;
-	vertical-align: middle;
-	margin-left: 20px;
-}
-#hint{
-	display: none;
-	background-color: #fff;
-	border: 1px solid #000;
-	position: absolute;
-}
-input[type='submit']{
-	margin-left: 80px;
-}
-input[type='reset']{
-	margin-left: 20px;
-}
-li{
-	list-style: none;
-	padding: 3px 10px;
-}
-li.li_selected{
-	background-color: rgb(218,233,254) !important;
-}
-li.li_unselected{
-	background-color: rgb(255,255,255) !important;
+#p_wrong_warning{
+	font-size: 0.8em;
+	color: #f00;
 }
