@@ -42,31 +42,60 @@ $("#right").css("max-height",window.innerHeight-7);
 
 // 从网上抄来的图片显示效果——鼠标滑过预览大图
 this.imagePreview = function(){	
-	/* CONFIG */
-		xOffset = 200;
-		yOffset = -720;
-		// these 2 variable determine popup's distance from the cursor
-		// you might want to adjust to get the right result
-	/* END CONFIG */
-	$("a.preview").hover(function(e){
+		var dx=0;
+		var dy=0;
+		var x;
+		var y;
+	$("a.preview").hover(
+	function(e){
 		this.t = this.title;
-		this.title = "";	
+		this.title = "";
 		var c = (this.t != "") ? "<br/>" + this.t : "";
-		$("body").append("<div id='preview'><img src='"+ this.rel +"' alt='Image preview' />"+ c +"</div>");								 
+		$("body").append("<div id='preview'><img src='"+ this.rel +"' alt='Image preview' />"+ c +"</div>");
+		dx=-$("#preview").width()-40;
+		dy=-$("#preview").height()/2;
+		if(e.clientX+dx<=0){
+			x=0;
+		}else if(e.clientX+dx>=document.documentElement.clientWidth-$("#preview").outerWidth()){
+			x=document.documentElement.clientWidth-$("#preview").outerWidth();
+		}else{
+			x=e.clientX+dx;
+		}
+		if(e.clientY+dy>=document.documentElement.clientHeight-$("#preview").outerHeight()){
+			y=document.documentElement.clientHeight-$("#preview").outerHeight();
+		}else if(e.clientY+dy<=0){
+			y=0;
+		}else{
+			y=e.clientY+dy;
+		}
 		$("#preview")
-			.css("top",(e.pageY - xOffset) + "px")
-			.css("left",(e.pageX + yOffset) + "px")
-			.fadeIn("fast");						
-    },
+			.css("top",y+"px")
+			.css("left",x+"px")
+			.fadeIn("fast");
+	},
 	function(){
-		this.title = this.t;	
+		this.title = this.t;
 		$("#preview").remove();
-    });	
+	});
 	$("a.preview").mousemove(function(e){
+		if(e.clientX+dx<=0){
+			x=0;
+		}else if(e.clientX+dx>=document.documentElement.clientWidth-$("#preview").outerWidth()){
+			x=document.documentElement.clientWidth-$("#preview").outerWidth();
+		}else{
+			x=e.clientX+dx;
+		}
+		if(e.clientY+dy>=document.documentElement.clientHeight-$("#preview").outerHeight()){
+			y=document.documentElement.clientHeight-$("#preview").outerHeight();
+		}else if(e.clientY+dy<=0){
+			y=0;
+		}else{
+			y=e.clientY+dy;
+		}
 		$("#preview")
-			.css("top",(e.pageY - xOffset) + "px")
-			.css("left",(e.pageX + yOffset) + "px");
-	});			
+			.css("top",y+"px")
+			.css("left",x+"px");
+	});
 };
 // starting the script on page load
 $(document).ready(function(){

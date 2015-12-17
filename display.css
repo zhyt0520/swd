@@ -177,10 +177,10 @@ img{
 }
 /*鼠标滑过预览大图*/
 #preview{
-	position:absolute;
+	position:fixed;
 	border:1px solid #ccc;
 	background:#333;
-	padding:5px;
+	padding:3px;
 	display:none;
 	color:#fff;
 }
