@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 <html>
 <head>
 	<title>query</title>
@@ -18,6 +16,7 @@ session_start();
 		}
 		?>
 	</div>
+	<div id='div_navigation'>navigation</div>
 	<div id="query">
 	<?php
 	if(isset($_SESSION["is_login"])&&$_SESSION["is_login"]=="login_yes"){
@@ -82,7 +81,7 @@ function dis_query_form(){
 		"<button type='button' class='fun_button' id='clear_checkbox_save'>清除保存</button>";
 	// 输出 html
 	echo "<form action='display.php' method='post' target='_blank'>";
-	echo "<div id=fun_button>".$fun_button."</div>";
+	echo "<div id=div_fun_button>".$fun_button."</div>";
 	echo "<div id='field_checkbox'>".$field_checkbox."</div>";
 	echo "<div id='query_form'>".$query_form."</div>";
 	echo "</form>";

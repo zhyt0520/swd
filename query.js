@@ -50,7 +50,7 @@ $("#hint").css("left",$("input#jinghao").offset().left);
 // note jquery 里面输入框的取值是 val() 而不是 value
 // note 需要用 keyup ，否则执行 post 的时候输入的值还没赋给 input
 $("input#jinghao").keyup(function(){
-	if($("input#jinghao").val()!="" && event.keyCode!=13 && event.keyCode!=38 && event.keyCode!=40){
+	if($("input#jinghao").val()!="" && event.keyCode!=13 && event.keyCode!=37 && event.keyCode!=38 && event.keyCode!=39 && event.keyCode!=40){
 		$.post("ajax.php",{mark:"hint",sub_jinghao:$("input#jinghao").val()},function(response){
 			if(response.length>0){
 				$("#hint").html(response);
@@ -70,6 +70,7 @@ $("input#jinghao").keyup(function(){
 $("input#jinghao").keydown(function(){
 	// 上
 	if(event.keyCode==38){
+		event.preventDefault();
 		if($(".li_selected").prev().length>0){
 			$(".li_selected").attr("class","tmp");
 			$(".tmp").prev().attr("class","li_selected");
@@ -77,6 +78,7 @@ $("input#jinghao").keydown(function(){
 		}
 	// 下
 	}else if(event.keyCode==40){
+		event.preventDefault();
 		if($(".li_selected").next().length>0){
 			$(".li_selected").attr("class","tmp");
 			$(".tmp").next().attr("class","li_selected");
