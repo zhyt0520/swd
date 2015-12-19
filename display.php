@@ -5,7 +5,7 @@
 	<?php require "config.php" ?>
 	<?php require "functions.php" ?>
 	<?php $conn=connect_db(); ?>
-	<title><?php dis_title() ?></title>
+	<title><p></p><?php dis_title() ?><p></p></title>
 </head>
 <body>
 	<div id="top">
