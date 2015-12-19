@@ -16,7 +16,13 @@
 		}
 		?>
 	</div>
-	<div id='div_navigation'>navigation</div>
+	<div id='div_navigation'>
+		<p>功能导航</p>
+		<ul>
+			<li><a>油井单井查询</a></li>
+			<li><a>使用问题反馈</a></li>
+		</ul>
+	</div>
 	<div id="query">
 	<?php
 	if(isset($_SESSION["is_login"])&&$_SESSION["is_login"]=="login_yes"){
