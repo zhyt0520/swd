@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="display.css">
 	<?php require "config.php" ?>
 	<?php require "functions.php" ?>
-	<?php $conn=connect_db(); ?>
+	<?php $conn=connect_db_remote();?>
 	<title><?php dis_title() ?></title>
 </head>
 <body>
@@ -52,7 +52,12 @@ function dis_daily_data($conn){
 
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
+		// 转换日期格式
+		$begin_riqi=date_format(date_create($begin_riqi),"d-M-y");
+		$end_riqi=date_format(date_create($end_riqi),"d-M-y");
+
 		$jinghao=$_REQUEST["jinghao"];
+
 		$field_checkbox=$_REQUEST["field_checkbox"];
 		// 把字段数组连成一条字符串
 		$field_str="";
@@ -62,7 +67,7 @@ function dis_daily_data($conn){
 		// 删除最后多余的一个逗号
 		$field_str=substr($field_str,0,strlen($field_str)-1);
 		// note 查询输入的字符串需要带引号
-		$query="select ".$field_str." from ".DB_TABLE_daily_data." where riqi>='".$begin_riqi."' and riqi<='".$end_riqi."' and jinghao='".$jinghao."';";
+		$query="select ".$field_str." from ".DB_TABLE_daily_data." where RQ>='".$begin_riqi."' and RQ<='".$end_riqi."' and JH='".$jinghao."'";
 		$result=$conn->prepare($query);
 		$result->execute();
 		$res=$result->fetchall(PDO::FETCH_ASSOC);
@@ -81,7 +86,7 @@ function dis_daily_data($conn){
 		for($i=0;$i<count($res);$i++){
 			$left_td.="<tr>";
 			for($j=0;$j<count($res[$i]);$j++){
-				$left_td.="<td class='$DB_FIELD_ARRAY[$j]'>".$res[$i][$DB_FIELD_ARRAY[$j]]."</td>";
+				$left_td.="<td class='$DB_FIELD_ARRAY[$j]'>".mb_convert_encoding($res[$i][$DB_FIELD_ARRAY[$j]],"UTF-8", "GBK")."</td>";
 			}
 			$left_td.="</tr>";
 		}

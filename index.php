@@ -15,10 +15,10 @@ if(isset($_SESSION["is_login"])&&$_SESSION["is_login"]=="login_yes"){
 	<div id="div_login">
 		<form method="post" action="login.php">
 			<p id="p_wrong_warning">&nbsp</p>
-			<span>帐号：</span><input type="text" name="username"/><br>
-			<span>密码：</span><input type="password" name="password"/><br>
-			<input type="checkbox" name="is_save_login_status" id="input_is_save_login_status"/><label for="input_is_save_login_status">保存登录状态</label><br>
-			<input type="submit" name="login" value="登录"/>
+			<span>帐号：</span><input type="text" name="username" autocomplete="off"/><br>
+			<span>密码：</span><input type="password" name="password" autocomplete="off"/><br>
+			<input type="checkbox" name="is_save_login_status" id="input_is_save_login_status" /><label for="input_is_save_login_status">保存登录状态</label><br>
+			<input type="button" name="login" value="登录"/>
 			<input type="button" name="signin" value="注册" title="功能暂未开放" />
 		</form>
 	</div>

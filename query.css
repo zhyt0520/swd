@@ -16,7 +16,7 @@ a:hover{
 }
 #div_user_info{
 	width: 768px;
-	margin: 20px auto 5px auto;
+	margin: 50px auto 5px auto;
 	text-align: left;
 }
 #div_navigation{
@@ -37,6 +37,7 @@ a:hover{
 #query{
 	display: inline-block;
 	vertical-align: middle;
+	height: 534px;
 	width: 700px;
 	border: 1px solid #000;
 	padding: 10px;
@@ -44,6 +45,7 @@ a:hover{
 }
 form{
 	text-align: left;
+	margin-top: 50px;
 }
 #div_fun_button{
 	display: inline-block;
@@ -59,12 +61,12 @@ form{
 	margin: 4px auto;
 }
 #field_checkbox{
+	vertical-align: middle;
 	border: 1px solid #000;
 	display: inline-block;
 	text-align: left;
 	padding: 0px 5px;
 	margin: 0px 50px;
-	vertical-align: middle;
 }
 #query_form{
 	display: inline-block;

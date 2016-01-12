@@ -1,7 +1,7 @@
 <?php
 
 require "config.php";
-require "functions.php";
+// require "functions.php";
 
 // 登录
 if(isset($_REQUEST["username"],$_REQUEST["password"],$_REQUEST["is_save_login_status"])){
@@ -12,7 +12,7 @@ if(isset($_REQUEST["username"],$_REQUEST["password"],$_REQUEST["is_save_login_st
 	$sdn="mysql:host=".DB_HOST.";port=".DB_PORT.";dbname=".DB_NAME;
 	$conn=new PDO ($sdn,DB_USER,DB_PASSWORD);
 	// note 设置 utf8 ，否则中文会全显示成问号
-	$conn->query("set names utf8");
+	// $conn->query("set names utf8");
 
 	// ！！！ 密码如何加密保存
 

@@ -5,8 +5,6 @@
 	<title>query</title>
 	<link rel="stylesheet" type="text/css" href="query.css">
 	<?php require "config.php" ?>
-	<?php require "functions.php" ?>
-	<?php $conn=connect_db(); ?>
 </head>
 <body>
 	<div id="div_user_info">

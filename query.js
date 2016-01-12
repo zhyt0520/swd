@@ -1,6 +1,7 @@
 // 退出登录
 $("#div_user_info a").click(function(){
 	$.post("login.php",{"logout":"logout"},function(response,status,xhr){
+		console.log(response)
 		if(response=="login_no"){
 			window.location.href="index.php";
 		}
@@ -15,7 +16,7 @@ if(all_cookie.indexOf("save_checkbox_chose")!=-1){
 	// note substr参数为开始index和长度；substring参数为开始index和结尾index
 	custom_checked_checkbox=all_cookie.substr(all_cookie.indexOf("save_checkbox_chose")+20,$("input[type='checkbox']").length);
 }
-var default_checked_checkbox=["RiQi","JingHao","ChongCheng","ChongCi","YouZui","ShangXingDianLiu","XiaXingDianLiu","ShengChanShiJian","BengJing","BengShen","YeMian","ChenMoDu","BengXiao","YouYa","TaoYa","RiChanYe","RiChanYou","RiChanQi","HanShui","BeiZhu"];
+var default_checked_checkbox=["RQ","JH","CC","CC1","YZ","SCSJ","BJ","YY","TY","RCYL1","RCYL","RCQL","HS","BZ"];
 if(custom_checked_checkbox==""){
 	for(var i=0;i<default_checked_checkbox.length;i++){
 		$("input#"+default_checked_checkbox[i]).prop("checked",true);
