@@ -54,106 +54,66 @@ td{
 	margin: 0px;
 	width: auto;
 }
-.RiQi{
+.RQ{
 	min-width: 70px;
+	width: 70px;
 }
-.JingHao{
+.JH{
 	min-width: 75px;
+	width: 75px;
 }
-.BanZu{
-
-}
-.MuQianJingBie{
-
-}
-.QuKuaiDanYuan{
-	min-width: 90px;
-}
-.KaiCaiCengWei{
-	max-width: 120px;
-}
-.ChongCheng{
+.CC{
 	min-width: 28px;
 }
-.ChongCi{
+.CC1{
 	min-width: 28px;
 }
-.YouZui{
+.YZ{
 	min-width: 28px;
 	max-width: 28px;
 }
-.ShangXingDianLiu{
-	min-width: 33px;
-	max-width: 33px;
-}
-.XiaXingDianLiu{
-	min-width: 33px;
-	max-width: 33px;
-}
-.PingHengLv{
-
-}
-.ShengChanShiJian{
+.SCSJ{
 	min-width: 30px;
 	max-width: 30px;
 	overflow: hidden;
 }
-.BengJing{
+.BJ{
 	min-width: 28px;
 	max-width: 28px;
 }
-.BengShen{
+.PL{
 	min-width: 30px;
 	max-width: 30px;
 }
-.YeMianShiJian{
-
-}
-.YeMian{
-	min-width: 45px;
-	max-width: 45px;
-}
-.ChenMoDu{
-	min-width: 30px;
-	max-width: 30px;
-}
-.LiLunPaiLiang{
-	min-width: 30px;
-	max-width: 30px;
-}
-.BengXiao{
-	min-width: 32px;
-	max-width: 32px;
-}
-.YouYa{
+.YY{
 	min-width: 28px;
 	max-width: 28px;
 }
-.TaoYa{
+.TY{
 	min-width: 28px;
 	max-width: 28px;
 }
-.HuiYa{
+.HY{
 	min-width: 28px;
 }
-.RiChanYe{
+.RCYL1{
 	min-width: 40px;
 	max-width: 40px;
 }
-.RiChanYou{
+.RCYL{
 	min-width: 40px;
 	max-width: 40px;
 }
-.RiChanQi{
+.RCQL{
 	min-width: 40px;
 }
-.HanShui{
+.HS{
 	min-width: 28px;
 	max-width: 28px;
 }
-.BeiZhu{
+.BZ{
 	/*min-width: 200px;*/
-	max-width: 200px;
+	/*max-width: 200px;*/
 }
 #table_sum td{
 	font-weight: bold;

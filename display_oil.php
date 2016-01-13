@@ -34,7 +34,7 @@
 </html>
 
 <?php
-// display.php 页面标题title
+// 页面标题title
 function dis_title(){
 	if(isset($_REQUEST["jinghao"])){
 		if(strstr(strtoupper($_REQUEST["jinghao"]),"NP23-")){
@@ -46,7 +46,7 @@ function dis_title(){
 	}
 }
 
-// display.php 页面显示单井日数据表
+// 页面显示单井日数据表
 function dis_daily_data($conn){
 	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"],$_REQUEST["field_checkbox"])){
 
@@ -67,26 +67,30 @@ function dis_daily_data($conn){
 		// 删除最后多余的一个逗号
 		$field_str=substr($field_str,0,strlen($field_str)-1);
 		// note 查询输入的字符串需要带引号
-		$query="select ".$field_str." from ".DB_TABLE_daily_data." where RQ>='".$begin_riqi."' and RQ<='".$end_riqi."' and JH='".$jinghao."'";
+		$query="select ".$field_str." from ".DB_TABLE_oil_well_data." where RQ>='".$begin_riqi."' and RQ<='".$end_riqi."' and JH='".$jinghao."'";
 		$result=$conn->prepare($query);
 		$result->execute();
 		$res=$result->fetchall(PDO::FETCH_ASSOC);
 		// note 返回结果数组的 key 是数据库字段名，区分大小写
-		global $FIELD_ARRAY;
+		global $FIELD_OIL_ARRAY;
 		foreach ($field_checkbox as $key) {
-			$DB_FIELD_ARRAY[]=$key;
-			$TH_ARRAY[]=$FIELD_ARRAY[$key];
+			$DB_FIELD_OIL_ARRAY[]=$key;
+			$TH_ARRAY[]=$FIELD_OIL_ARRAY[$key];
 		}
 		$left_th="<tr id='th'>";
 		for($i=0;$i<count($TH_ARRAY);$i++){
-			$left_th.="<th class='$DB_FIELD_ARRAY[$i]'>".$TH_ARRAY[$i]."</th>";
+			$left_th.="<th class='$DB_FIELD_OIL_ARRAY[$i]'>".$TH_ARRAY[$i]."</th>";
 		}
 		$left_th.="</tr>";
 		$left_td="";
 		for($i=0;$i<count($res);$i++){
 			$left_td.="<tr>";
 			for($j=0;$j<count($res[$i]);$j++){
-				$left_td.="<td class='$DB_FIELD_ARRAY[$j]'>".mb_convert_encoding($res[$i][$DB_FIELD_ARRAY[$j]],"UTF-8", "GBK")."</td>";
+				if($DB_FIELD_OIL_ARRAY[$j]=="RQ"){
+					$left_td.="<td class='$DB_FIELD_OIL_ARRAY[$j]'>".date_format(date_create(mb_convert_encoding($res[$i][$DB_FIELD_OIL_ARRAY[$j]],"UTF-8", "GBK")),"Y-m-d")."</td>";
+				}else{
+					$left_td.="<td class='$DB_FIELD_OIL_ARRAY[$j]'>".mb_convert_encoding($res[$i][$DB_FIELD_OIL_ARRAY[$j]],"UTF-8", "GBK")."</td>";
+				}
 			}
 			$left_td.="</tr>";
 		}
@@ -101,16 +105,16 @@ function dis_daily_data($conn){
 		// 	$RiChanQi_sum+=$res[$i]["RiChanQi"];
 		// }
 		// $left_sum_td="";
-		// $left_sum_td.="<td class='$DB_FIELD_ARRAY[0]'>合计</td>";
+		// $left_sum_td.="<td class='$DB_FIELD_OIL_ARRAY[0]'>合计</td>";
 		// for($i=1;$i<count($TH_ARRAY);$i++){
-		// 	if($DB_FIELD_ARRAY[$i]=="RiChanYe"){
-		// 		$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanYe_sum."</td>";
-		// 	}elseif($DB_FIELD_ARRAY[$i]=="RiChanYou"){
-		// 		$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanYou_sum."</td>";
-		// 	}elseif($DB_FIELD_ARRAY[$i]=="RiChanQi"){
-		// 		$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'>".$RiChanQi_sum."</td>";
+		// 	if($DB_FIELD_OIL_ARRAY[$i]=="RiChanYe"){
+		// 		$left_sum_td.="<td class='$DB_FIELD_OIL_ARRAY[$i]'>".$RiChanYe_sum."</td>";
+		// 	}elseif($DB_FIELD_OIL_ARRAY[$i]=="RiChanYou"){
+		// 		$left_sum_td.="<td class='$DB_FIELD_OIL_ARRAY[$i]'>".$RiChanYou_sum."</td>";
+		// 	}elseif($DB_FIELD_OIL_ARRAY[$i]=="RiChanQi"){
+		// 		$left_sum_td.="<td class='$DB_FIELD_OIL_ARRAY[$i]'>".$RiChanQi_sum."</td>";
 		// 	}else{
-		// 		$left_sum_td.="<td class='$DB_FIELD_ARRAY[$i]'></td>";
+		// 		$left_sum_td.="<td class='$DB_FIELD_OIL_ARRAY[$i]'></td>";
 		// 	}
 		// }
 		// $left_sum="<tr id='table_sum'>".$left_sum_td."</tr>";
@@ -120,17 +124,17 @@ function dis_daily_data($conn){
 	}
 }
 
-// display.php 页面显示功图图片
+// 页面显示功图图片
 function dis_indicator_diagram(){
 	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
 		$jinghao=strtoupper($_REQUEST["jinghao"]);
-		global $JINGHAO_ARRAY;
+		global $JINGHAO_OIL_ARRAY;
 		$indicator_diagram_files=glob("../data/indicator_diagram/*");
 		$is_jinghao_right=false;
-		for($i=0;$i<count($JINGHAO_ARRAY);$i++){
-			if($jinghao==$JINGHAO_ARRAY[$i]){
+		for($i=0;$i<count($JINGHAO_OIL_ARRAY);$i++){
+			if($jinghao==$JINGHAO_OIL_ARRAY[$i]){
 				$is_jinghao_right=true;
 			}
 		}
@@ -165,17 +169,17 @@ function dis_indicator_diagram(){
 }
 
 // ！！！显示功图和液面的代码绝大部分重复
-// display.php 页面显示液面图片
+// 页面显示液面图片
 function dis_liquid_level(){
 	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"])){
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
 		$jinghao=strtoupper($_REQUEST["jinghao"]);
-		global $JINGHAO_ARRAY;
+		global $JINGHAO_OIL_ARRAY;
 		$liquid_level_files=glob("../data/liquid_level/*");
 		$is_jinghao_right=false;
-		for($i=0;$i<count($JINGHAO_ARRAY);$i++){
-			if($jinghao==$JINGHAO_ARRAY[$i]){
+		for($i=0;$i<count($JINGHAO_OIL_ARRAY);$i++){
+			if($jinghao==$JINGHAO_OIL_ARRAY[$i]){
 				$is_jinghao_right=true;
 			}
 		}

@@ -71,7 +71,11 @@ $("input#jinghao").keyup(function(){
 $("input#jinghao").keydown(function(){
 	// 上
 	if(event.keyCode==38){
-		event.preventDefault();
+		if(event && event.preventDefault){
+			event.preventDefault();
+		}else{
+			window.event.returnValue=false;
+		}
 		if($(".li_selected").prev().length>0){
 			$(".li_selected").attr("class","tmp");
 			$(".tmp").prev().attr("class","li_selected");
@@ -79,7 +83,11 @@ $("input#jinghao").keydown(function(){
 		}
 	// 下
 	}else if(event.keyCode==40){
-		event.preventDefault();
+		if(event && event.preventDefault){
+			event.preventDefault();
+		}else{
+			window.event.returnValue=false;
+		}
 		if($(".li_selected").next().length>0){
 			$(".li_selected").attr("class","tmp");
 			$(".tmp").next().attr("class","li_selected");
@@ -87,14 +95,39 @@ $("input#jinghao").keydown(function(){
 		}
 	// 回车
 	}else if(event.keyCode==13){
-		// 若输入框内字符串不等于选中的 hint，把值填入输入框
-		if($("input#jinghao").val()!=$(".li_selected").text()){
+		//阻止默认的回车提交表单
+		if(event && event.preventDefault){
 			event.preventDefault();
+		}else{
+			window.event.returnValue=false;
+		}
+		//判断是油井还是水井
+		var is_oil_or_water="";
+		for(var i=0;i<JINGHAO_OIL_ARRAY.length;i++){
+			if($("input#jinghao").val()==JINGHAO_OIL_ARRAY[i]){
+				is_oil_or_water="oil";
+			}
+		}
+		for(var i=0;i<JINGHAO_WATER_ARRAY.length;i++){
+			if($("input#jinghao").val()==JINGHAO_WATER_ARRAY[i]){
+				is_oil_or_water="water";
+			}
+		}
+		// 判断是自动填入井号，还是提交表单
+		if($("input#jinghao").val()!=$(".li_selected").text()){
+			// 若输入框内字符串不等于选中的 hint，把值填入输入框
 			$("input#jinghao").val($(".li_selected").text());
 			$("input#jinghao").focus();
 			$("#hint").hide();
 		}
-		// 否则输入框内字符串等于选中的 hint ，不阻止默认动作，即提交表单进行查询
+		// 否则输入内容等于 选中的hint
+		else if(is_oil_or_water=="oil"){
+			$("form").attr("action","display_oil.php");
+			$("form").submit();
+		}else if(is_oil_or_water=="water"){
+			$("form").attr("action","display_water.php");
+			$("form").submit();
+		}
 	}
 });
 
@@ -132,9 +165,14 @@ $(document).on("click",function(){
 	}
 });
 
+// 查询按钮
+$("#input_chaxun").click(function(){
+	$("form").attr("action","display.php");
+	$("form").submit();
+});
+
 // 清除按钮
 $("#input_qingchu").click(function(){
-	event.preventDefault();
 	$("input#jinghao").val("");
 });
 

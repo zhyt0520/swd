@@ -5,6 +5,7 @@
 	<title>query</title>
 	<link rel="stylesheet" type="text/css" href="query.css">
 	<?php require "config.php" ?>
+	<?php require "cfg_for_js.php" ?>
 </head>
 <body>
 	<div id="div_user_info">
@@ -60,14 +61,14 @@ function dis_query_form(){
 	}
 	$begin_date=single_date_html("begin");
 	$end_date=single_date_html("end");
-	global $FIELD_ARRAY;
-	foreach ($FIELD_ARRAY as $key => $value) {
-		$DB_FIELD_ARRAY[]=$key;
+	global $FIELD_OIL_ARRAY;
+	foreach ($FIELD_OIL_ARRAY as $key => $value) {
+		$DB_FIELD_OIL_ARRAY[]=$key;
 		$TH_ARRAY[]=$value;
 	}
 	$field_checkbox="";
-	for ($i=0; $i < count($FIELD_ARRAY); $i++) { 
-		$field_checkbox.="<input type='checkbox' id='".$DB_FIELD_ARRAY[$i]."' name='field_checkbox[]' value='".$DB_FIELD_ARRAY[$i]."'/><label for='".$DB_FIELD_ARRAY[$i]."'>".$TH_ARRAY[$i]."</label><br>";
+	for ($i=0; $i < count($FIELD_OIL_ARRAY); $i++) { 
+		$field_checkbox.="<input type='checkbox' id='".$DB_FIELD_OIL_ARRAY[$i]."' name='field_checkbox[]' value='".$DB_FIELD_OIL_ARRAY[$i]."'/><label for='".$DB_FIELD_OIL_ARRAY[$i]."'>".$TH_ARRAY[$i]."</label><br>";
 	}
 	$query_form=
 		"<p>开始时间：".$begin_date."</p>".
@@ -76,7 +77,7 @@ function dis_query_form(){
 		"<div id='hint'></div>".
 		"<br>".
 		/*note 用 autocomplete='off' 屏蔽输入框自动记录*/
-		"<input type='submit' value='查询' /><input type='button' value='清除' id='input_qingchu'/>";
+		"<input type='button' value='查询' id='input_chaxun'/><input type='button' value='清除' id='input_qingchu'/>";
 	$fun_button=
 		"<button type='button' class='fun_button' id='select_all'>全选</button>".
 		"<button type='button' class='fun_button' id='unselect_all'>全不选</button>".
@@ -84,7 +85,7 @@ function dis_query_form(){
 		"<button type='button' class='fun_button' id='save_checkbox_chose'>保存选择</button>".
 		"<button type='button' class='fun_button' id='clear_checkbox_save'>清除保存</button>";
 	// 输出 html
-	echo "<form action='display.php' method='post' target='_blank'>";
+	echo "<form method='post' target='_blank'>";
 	echo "<div id=div_fun_button>".$fun_button."</div>";
 	echo "<div id='field_checkbox'>".$field_checkbox."</div>";
 	echo "<div id='query_form'>".$query_form."</div>";

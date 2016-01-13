@@ -1,5 +1,9 @@
 $("input[name='login']").click(function(){
-	event.preventDefault();
+	if(event && event.preventDefault){
+		event.preventDefault();
+	}else{
+		window.event.returnValue=false;
+	}
 	$.post("login.php",{"username":$("input[name='username']").val(),"password":$("input[name='password']").val(),"is_save_login_status":$("input[name='is_save_login_status']").prop("checked")},function(response,status,xhr){
 		if(response=="login_yes"){
 			// 页面跳转

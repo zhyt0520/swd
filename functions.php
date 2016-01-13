@@ -1,6 +1,6 @@
 <?php
 
-// 连接本地数据库，创建数据表
+// 连接本地数据库
 function connect_db(){
 	$sdn="mysql:host=".DB_HOST.";port=".DB_PORT.";dbname=".DB_NAME;
 	try {
@@ -14,7 +14,7 @@ function connect_db(){
 	}
 }
 
-// 连接远程数据库，创建数据表
+// 连接远程数据库
 function connect_db_remote(){
 	$sdn="oci:dbname=".DB_HOST_REMOTE.":".DB_PORT_REMOTE."/".DB_NAME_REMOTE.";charset=zhs16gbk";
 	$conn=new PDO ($sdn,DB_USER_REMOTE,DB_PASSWORD_REMOTE);
