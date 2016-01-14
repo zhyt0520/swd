@@ -59,8 +59,6 @@ $FIELD_WATER_ARRAY=array(
 	"RPZSL"=>"日配置水量",
 	"RZSL"=>"日注水量",
 	"PZCDS"=>"配注层段数",
-	"YLL"=>"",
-	"BZDM"=>"备注代码",
 	"BZ"=>"备注",
 	);
 

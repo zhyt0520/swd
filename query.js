@@ -1,7 +1,6 @@
 // 退出登录
 $("#div_user_info a").click(function(){
 	$.post("login.php",{"logout":"logout"},function(response,status,xhr){
-		console.log(response)
 		if(response=="login_no"){
 			window.location.href="index.php";
 		}
@@ -16,13 +15,22 @@ if(all_cookie.indexOf("save_checkbox_chose")!=-1){
 	// note substr参数为开始index和长度；substring参数为开始index和结尾index
 	custom_checked_checkbox=all_cookie.substr(all_cookie.indexOf("save_checkbox_chose")+20,$("input[type='checkbox']").length);
 }
-var default_checked_checkbox=["RQ","JH","CC","CC1","YZ","SCSJ","BJ","YY","TY","RCYL1","RCYL","RCQL","HS","BZ"];
+// 默认的油井选择
+var default_checked_checkbox_oil=["RQ","JH","CC","CC1","YZ","SCSJ","BJ","YY","TY","RCYL1","RCYL","RCQL","HS","BZ"];
+// 默认的水井选择
+var default_checked_checkbox_water=["RQ","JH","SCSJ","ZSFS","GXYL","YY","TY","RPZSL","RZSL","PZCDS","BZ",];
 if(custom_checked_checkbox==""){
-	for(var i=0;i<default_checked_checkbox.length;i++){
-		$("input#"+default_checked_checkbox[i]).prop("checked",true);
+	// cookie 为空
+	for(var i=0;i<default_checked_checkbox_oil.length;i++){
+		$("#field_checkbox_oil input#"+default_checked_checkbox_oil[i]).prop("checked",true);
+	}
+	for(var i=0;i<default_checked_checkbox_water.length;i++){
+		$("#field_checkbox_water input#"+default_checked_checkbox_water[i]).prop("checked",true);
 	}
 }else{
+	// 输入cookie的选择
 	// note $("input[type='checkbox']")[i].prop()报错
+	// ！！！ 需添加水井部分
 	var i=0;
 	$("input[type='checkbox']").each(function(){
 		if(custom_checked_checkbox.substr(i,1)==1){
@@ -68,6 +76,7 @@ $("input#jinghao").keyup(function(){
 
 // 键盘控制 hint 条目的选择
 // note 需要用 keydown ，否则 event.preventDefault(); 无法阻止回车键提交表单
+
 $("input#jinghao").keydown(function(){
 	// 上
 	if(event.keyCode==38){
@@ -95,13 +104,13 @@ $("input#jinghao").keydown(function(){
 		}
 	// 回车
 	}else if(event.keyCode==13){
-		//阻止默认的回车提交表单
+		// 阻止默认的回车提交表单
 		if(event && event.preventDefault){
 			event.preventDefault();
 		}else{
 			window.event.returnValue=false;
 		}
-		//判断是油井还是水井
+		// 判断是油井还是水井
 		var is_oil_or_water="";
 		for(var i=0;i<JINGHAO_OIL_ARRAY.length;i++){
 			if($("input#jinghao").val()==JINGHAO_OIL_ARRAY[i]){
@@ -156,6 +165,7 @@ $("#hint").on({
 
 // 输入框内点击鼠标出现 hint，页面内点击鼠标隐藏 hint
 $(document).on("click",function(){
+	// ！！！ event.target 貌似 IE 不支持
 	if($(event.target).closest("input#jinghao").length>0 && $("input#jinghao").val()!=""){
 		$("#hint").show();
 		// 全选 input 内部的文字
@@ -167,8 +177,26 @@ $(document).on("click",function(){
 
 // 查询按钮
 $("#input_chaxun").click(function(){
-	$("form").attr("action","display.php");
-	$("form").submit();
+	// 需判断油井还是水井
+	var is_oil_or_water="";
+	for(var i=0;i<JINGHAO_OIL_ARRAY.length;i++){
+		if($("input#jinghao").val()==JINGHAO_OIL_ARRAY[i]){
+			is_oil_or_water="oil";
+		}
+	}
+	for(var i=0;i<JINGHAO_WATER_ARRAY.length;i++){
+		if($("input#jinghao").val()==JINGHAO_WATER_ARRAY[i]){
+			is_oil_or_water="water";
+		}
+	}
+	if(is_oil_or_water=="oil"){
+		$("form").attr("action","display_oil.php");
+		$("form").submit();
+	}
+	if(is_oil_or_water=="water"){
+		$("form").attr("action","display_water.php");
+		$("form").submit();
+	}
 });
 
 // 清除按钮
@@ -186,8 +214,13 @@ $("#unselect_all").click(function(){
 });
 $("#reset_default").click(function(){
 	$("input[type='checkbox']").prop("checked",false);
-	for(var i=0;i<default_checked_checkbox.length;i++){
-		$("input#"+default_checked_checkbox[i]).prop("checked",true);
+	// 给油井checkbox恢复默认选择
+	for(var i=0;i<default_checked_checkbox_oil.length;i++){
+		$("input#"+default_checked_checkbox_oil[i]).prop("checked",true);
+	}
+	// 给水井checkbox恢复默认选择
+	for(var i=0;i<default_checked_checkbox_water.length;i++){
+		$("input#"+default_checked_checkbox_water[i]).prop("checked",true);
 	}
 });
 $("#save_checkbox_chose").click(function(){

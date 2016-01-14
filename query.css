@@ -60,13 +60,21 @@ form{
 	display: block;
 	margin: 4px auto;
 }
-#field_checkbox{
+#field_checkbox_oil{
 	vertical-align: middle;
 	border: 1px solid #000;
 	display: inline-block;
 	text-align: left;
 	padding: 0px 5px;
-	margin: 0px 50px;
+	margin: 0px 10px 0px 20px;
+}
+#field_checkbox_water{
+	vertical-align: middle;
+	border: 1px solid #000;
+	display: inline-block;
+	text-align: left;
+	padding: 0px 5px;
+	margin: 0px 10px 0px 10px;
 }
 #query_form{
 	display: inline-block;

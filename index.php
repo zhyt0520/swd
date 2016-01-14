@@ -12,7 +12,7 @@ if(isset($_SESSION["is_login"])&&$_SESSION["is_login"]=="login_yes"){
 	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-	<div id="browser_remind">请使用浏览器的极速模式，或 IE 9 以上版本访问<br>否则页面排版及部分功能会出现问题<br>测试账号：<b>test</b>，密码：<b>test</b></div>
+	<div id="browser_remind">请使用 WebKit 内核浏览器或 IE9 以上版本访问<br>多内核浏览器请选择极速模式<br>否则页面排版及部分功能会出现问题<br>测试账号：<b>test</b>，密码：<b>test</b></div>
 	<div id="div_login">
 		<form method="post" action="login.php">
 			<p id="p_wrong_warning">&nbsp</p>

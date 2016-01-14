@@ -48,7 +48,7 @@ function dis_title(){
 
 // 页面显示单井日数据表
 function dis_daily_data($conn){
-	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"],$_REQUEST["field_checkbox"])){
+	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"],$_REQUEST["field_checkbox_oil"])){
 
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
@@ -58,10 +58,10 @@ function dis_daily_data($conn){
 
 		$jinghao=$_REQUEST["jinghao"];
 
-		$field_checkbox=$_REQUEST["field_checkbox"];
+		$field_checkbox_oil=$_REQUEST["field_checkbox_oil"];
 		// 把字段数组连成一条字符串
 		$field_str="";
-		foreach ($field_checkbox as $value) {
+		foreach ($field_checkbox_oil as $value) {
 			$field_str.=$value.",";
 		}
 		// 删除最后多余的一个逗号
@@ -73,7 +73,7 @@ function dis_daily_data($conn){
 		$res=$result->fetchall(PDO::FETCH_ASSOC);
 		// note 返回结果数组的 key 是数据库字段名，区分大小写
 		global $FIELD_OIL_ARRAY;
-		foreach ($field_checkbox as $key) {
+		foreach ($field_checkbox_oil as $key) {
 			$DB_FIELD_OIL_ARRAY[]=$key;
 			$TH_ARRAY[]=$FIELD_OIL_ARRAY[$key];
 		}

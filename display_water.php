@@ -36,7 +36,7 @@ function dis_title(){
 
 // 页面显示单井日数据表
 function dis_daily_data($conn){
-	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"],$_REQUEST["field_checkbox"])){
+	if(isset($_REQUEST["begin_year"],$_REQUEST["begin_month"],$_REQUEST["begin_day"],$_REQUEST["end_year"],$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["jinghao"],$_REQUEST["field_checkbox_water"])){
 
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
@@ -46,10 +46,10 @@ function dis_daily_data($conn){
 
 		$jinghao=$_REQUEST["jinghao"];
 
-		$field_checkbox=$_REQUEST["field_checkbox"];
+		$field_checkbox_water=$_REQUEST["field_checkbox_water"];
 		// 把字段数组连成一条字符串
 		$field_str="";
-		foreach ($field_checkbox as $value) {
+		foreach ($field_checkbox_water as $value) {
 			$field_str.=$value.",";
 		}
 		// 删除最后多余的一个逗号
@@ -60,24 +60,24 @@ function dis_daily_data($conn){
 		$result->execute();
 		$res=$result->fetchall(PDO::FETCH_ASSOC);
 		// note 返回结果数组的 key 是数据库字段名，区分大小写
-		global $FIELD_OIL_ARRAY;
-		foreach ($field_checkbox as $key) {
-			$DB_FIELD_OIL_ARRAY[]=$key;
-			$TH_ARRAY[]=$FIELD_OIL_ARRAY[$key];
+		global $FIELD_WATER_ARRAY;
+		foreach ($field_checkbox_water as $key) {
+			$DB_FIELD_WATER_ARRAY[]=$key;
+			$TH_ARRAY[]=$FIELD_WATER_ARRAY[$key];
 		}
 		$left_th="<tr id='th'>";
 		for($i=0;$i<count($TH_ARRAY);$i++){
-			$left_th.="<th class='$DB_FIELD_OIL_ARRAY[$i]'>".$TH_ARRAY[$i]."</th>";
+			$left_th.="<th class='$DB_FIELD_WATER_ARRAY[$i]'>".$TH_ARRAY[$i]."</th>";
 		}
 		$left_th.="</tr>";
 		$left_td="";
 		for($i=0;$i<count($res);$i++){
 			$left_td.="<tr>";
 			for($j=0;$j<count($res[$i]);$j++){
-				if($DB_FIELD_OIL_ARRAY[$j]=="RQ"){
-					$left_td.="<td class='$DB_FIELD_OIL_ARRAY[$j]'>".date_format(date_create(mb_convert_encoding($res[$i][$DB_FIELD_OIL_ARRAY[$j]],"UTF-8", "GBK")),"Y-m-d")."</td>";
+				if($DB_FIELD_WATER_ARRAY[$j]=="RQ"){
+					$left_td.="<td class='$DB_FIELD_WATER_ARRAY[$j]'>".date_format(date_create(mb_convert_encoding($res[$i][$DB_FIELD_WATER_ARRAY[$j]],"UTF-8", "GBK")),"Y-m-d")."</td>";
 				}else{
-					$left_td.="<td class='$DB_FIELD_OIL_ARRAY[$j]'>".mb_convert_encoding($res[$i][$DB_FIELD_OIL_ARRAY[$j]],"UTF-8", "GBK")."</td>";
+					$left_td.="<td class='$DB_FIELD_WATER_ARRAY[$j]'>".mb_convert_encoding($res[$i][$DB_FIELD_WATER_ARRAY[$j]],"UTF-8", "GBK")."</td>";
 				}
 			}
 			$left_td.="</tr>";

@@ -18,7 +18,7 @@
 	<div id='div_navigation'>
 		<p>功能导航</p>
 		<ul>
-			<li><a>油井单井查询</a></li>
+			<li><a>单井数据查询</a></li>
 			<li><a>使用问题反馈</a></li>
 		</ul>
 	</div>
@@ -38,6 +38,7 @@
 
 <?php
 function dis_query_form(){
+	// 把一组日期的 select 输出为 HTML 代码
 	function single_date_html($prefix){
 		$year_array=array(2010,2011,2012,2013,2014,2015,2016);
 		$monTH_ARRAY=array(1,2,3,4,5,6,7,8,9,10,11,12);
@@ -61,14 +62,28 @@ function dis_query_form(){
 	}
 	$begin_date=single_date_html("begin");
 	$end_date=single_date_html("end");
+	// 从 config.php 获取数组
 	global $FIELD_OIL_ARRAY;
+	global $FIELD_WATER_ARRAY;
+	// 油井字段及中文名称
 	foreach ($FIELD_OIL_ARRAY as $key => $value) {
 		$DB_FIELD_OIL_ARRAY[]=$key;
-		$TH_ARRAY[]=$value;
+		$TH_ARRAY_OIL[]=$value;
 	}
-	$field_checkbox="";
+	// 水井字段及中文名称
+	foreach ($FIELD_WATER_ARRAY as $key => $value) {
+		$DB_FIELD_WATER_ARRAY[]=$key;
+		$TH_ARRAY_WATER[]=$value;
+	}
+	// 油井查询字段选择 checkbox
+	$field_checkbox_oil="";
 	for ($i=0; $i < count($FIELD_OIL_ARRAY); $i++) { 
-		$field_checkbox.="<input type='checkbox' id='".$DB_FIELD_OIL_ARRAY[$i]."' name='field_checkbox[]' value='".$DB_FIELD_OIL_ARRAY[$i]."'/><label for='".$DB_FIELD_OIL_ARRAY[$i]."'>".$TH_ARRAY[$i]."</label><br>";
+		$field_checkbox_oil.="<input type='checkbox' id='".$DB_FIELD_OIL_ARRAY[$i]."' name='field_checkbox_oil[]' value='".$DB_FIELD_OIL_ARRAY[$i]."'/><label for='".$DB_FIELD_OIL_ARRAY[$i]."'>".$TH_ARRAY_OIL[$i]."</label><br>";
+	}
+	// 水井查询字段选择 checkbox
+	$field_checkbox_water="";
+	for ($i=0; $i < count($FIELD_WATER_ARRAY); $i++) { 
+		$field_checkbox_water.="<input type='checkbox' id='".$DB_FIELD_WATER_ARRAY[$i]."' name='field_checkbox_water[]' value='".$DB_FIELD_WATER_ARRAY[$i]."'/><label for='".$DB_FIELD_WATER_ARRAY[$i]."'>".$TH_ARRAY_WATER[$i]."</label><br>";
 	}
 	$query_form=
 		"<p>开始时间：".$begin_date."</p>".
@@ -87,7 +102,8 @@ function dis_query_form(){
 	// 输出 html
 	echo "<form method='post' target='_blank'>";
 	echo "<div id=div_fun_button>".$fun_button."</div>";
-	echo "<div id='field_checkbox'>".$field_checkbox."</div>";
+	echo "<div id='field_checkbox_oil'><br><b>油井数据选择</b><br><br>".$field_checkbox_oil."<br></div>";
+	echo "<div id='field_checkbox_water'><br><b>水井数据选择</b><br><br>".$field_checkbox_water."<br></div>";
 	echo "<div id='query_form'>".$query_form."</div>";
 	echo "</form>";
 }
