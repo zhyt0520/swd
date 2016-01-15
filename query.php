@@ -18,8 +18,9 @@
 	<div id='div_navigation'>
 		<p>功能导航</p>
 		<ul>
-			<li><a>单井数据查询</a></li>
-			<li><a>使用问题反馈</a></li>
+			<li><a>单井查询</a></li>
+			<li><a>问题反馈</a></li>
+			<li><a>使用帮助</a></li>
 		</ul>
 	</div>
 	<div id="query">

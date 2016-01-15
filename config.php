@@ -56,9 +56,9 @@ $FIELD_WATER_ARRAY=array(
 	"TY"=>"套压",
 	"JKHT"=>"井口含铁",
 	"JKZZ"=>"井口杂质",
-	"RPZSL"=>"日配置水量",
-	"RZSL"=>"日注水量",
-	"PZCDS"=>"配注层段数",
+	"RPZSL"=>"日配注",
+	"RZSL"=>"日注水",
+	"PZCDS"=>"配注层段",
 	"BZ"=>"备注",
 	);
 
