@@ -6,7 +6,7 @@ body{
 #top{
 	width: 99%;
 	height: auto;
-	border: 1px solid #000;
+	/*border: 1px solid #000;*/
 	text-align: center;
 	margin: 0px;
 }

@@ -20,7 +20,7 @@
 		<ul>
 			<li><a>单井查询</a></li>
 			<li><a>问题反馈</a></li>
-			<li><a>使用帮助</a></li>
+			<li><a href="help.html" target="_blank">使用帮助</a></li>
 		</ul>
 	</div>
 	<div id="query">

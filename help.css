@@ -1,0 +1,23 @@
+body{
+	width: 95%;
+}
+a{
+  color: #4183c4;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active{
+  text-decoration: underline;
+}
+ul{
+	padding-left: 20px;
+}
+.toc{
+	float: left;
+	margin: 0px 20px;
+}
+.markdown-body{
+	border-left: 1px solid #ddd;
+}
