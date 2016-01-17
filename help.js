@@ -1,5 +1,6 @@
 //<script type="text/javascript" src="jquery-1.11.3.min.js"></script><script type="text/javascript" src="help.js"></script>
 $(document).ready(function(){
+	$("title").text("使用帮助");
 	var toc=$(".toc");
 	$(".toc").remove();
 	$("body").prepend(toc);
