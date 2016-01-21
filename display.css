@@ -112,8 +112,8 @@ td{
 	max-width: 28px;
 }
 .BZ{
-	/*min-width: 200px;*/
-	/*max-width: 200px;*/
+	min-width: 230px;
+	max-width: 230px;
 }
 #table_sum td{
 	font-weight: bold;
