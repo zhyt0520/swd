@@ -9,9 +9,7 @@
 </head>
 <body>
 	<div id="top">
-		<p>&nbsp</p>
 		<p>水井：<b><?php echo(isset($_REQUEST["jinghao"])?$_REQUEST["jinghao"]:false) ?></b> 生产数据</p>
-		<p>&nbsp</p>
 	</div>
 	<div id="left">
 		<?php isset($conn)?dis_daily_data($conn):false ?>

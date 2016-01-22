@@ -25,10 +25,10 @@ $.fn.smartFloat=function(x){
 	$(window).scroll(function(){
 		var scrolls=$(this).scrollTop();
 		if(scrolls>thetop+x){
-			element.css({position:'fixed',top:0,width:wid,});
-			element.offset({top:null,left:offsetleft,});
+			element.css({position:'fixed',top:0,/*width:wid,*/});
+			element.offset({/*top:null,*/left:offsetleft,});
 		}else{
-			element.css({position:pos,top:thetop,width:wid,});
+			element.css({position:pos,/*top:thetop,width:wid,*/});
 		}
 	});
 };
@@ -45,7 +45,7 @@ if($("#div_tube_rod").length>0){
 
 // 控制 #right的最大高度，给 #rigth 的内容添加单独的滚动条
 // $("#right").css("max-height",window.innerHeight-$("#top").css("height").substring(0,$("#top").css("height").length-2)-14+"px");
-$("#right").css("max-height",window.innerHeight-7);
+$("#right").css("max-height",window.innerHeight-10);
 
 // 从网上抄来的图片显示效果——鼠标滑过预览大图
 this.imagePreview = function(){	
@@ -123,7 +123,7 @@ $(".tab_head").click(function(){
 
 // 双击功图和液面的图片在新窗口打开
 // note 用逗号隔开两个选择器
-$(".indicator_diagram,.liquid_level").dblclick(function(){
+$(".indicator_diagram,.liquid_level,.tube_rod").dblclick(function(){
 	var url=$(this).attr("src");
 	url=url.substr(2,url.length);
 	var a=$('<a href="'+url+'" target="_blank"></a>')[0];
@@ -134,3 +134,5 @@ $(".indicator_diagram,.liquid_level").dblclick(function(){
 
 // 滚动到文档最底部
 // scroll(0,$(document).height());
+
+// 产量曲线图

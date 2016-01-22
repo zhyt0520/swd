@@ -114,9 +114,7 @@ td{
 }
 /*功图液面*/
 #right{
-	/*width: 24%;*/
-	min-width: 300px;
-	/*min-height: 600px;*/
+	width: 300px;
 	border: 1px solid #000;
 	display: inline-block;
 	vertical-align: top;
@@ -163,8 +161,8 @@ ul{
 /*管柱图*/
 #div_tube_rod{
 	display: inline-block;
-	width: 440px;
+	width: auto;
 }
 .tube_rod{
-	max-width: 400px;
+	max-width: 300px;
 }
