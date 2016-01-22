@@ -6,7 +6,6 @@ body{
 #top{
 	width: 99%;
 	height: auto;
-	/*border: 1px solid #000;*/
 	text-align: center;
 	margin: 0px;
 }
@@ -16,22 +15,11 @@ body{
 	margin: 0px;
 }
 #left{
-	/*width: 75%;*/
 	min-width: 600px;
 	min-height: 550px;
 	display: inline-block;
 	vertical-align: top;
 	text-align: center;
-}
-#right{
-	/*width: 24%;*/
-	min-width: 300px;
-	/*min-height: 600px;*/
-	border: 1px solid #000;
-	display: inline-block;
-	vertical-align: top;
-	text-align: center;
-	overflow: auto;
 }
 table{
 	border-collapse:collapse;
@@ -125,6 +113,16 @@ td{
 	width: 280px;
 }
 /*功图液面*/
+#right{
+	/*width: 24%;*/
+	min-width: 300px;
+	/*min-height: 600px;*/
+	border: 1px solid #000;
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	overflow: auto;
+}
 .tab_selected{
 	background-color: #99f !important;
 }
@@ -161,4 +159,12 @@ ul{
 }
 #tab_content_1{
 	display: block;
+}
+/*管柱图*/
+#div_tube_rod{
+	display: inline-block;
+	width: 440px;
+}
+.tube_rod{
+	max-width: 400px;
 }

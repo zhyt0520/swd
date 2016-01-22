@@ -15,8 +15,8 @@
 	</div>
 	<div id="left">
 		<?php isset($conn)?dis_daily_data($conn):false ?>
-	</div><!-- note 这里用注释消除掉 #left 和 #right 两个标签段落之间默认的空格
-	--><div id="right">
+	</div>
+	<div id="right">
 		<ul id="tab_ul">
 			<li class="tab_head tab_selected" id="tab_1">功图</li>
 			<li class="tab_head tab_unselected" id="tab_2">液面</li>
@@ -28,8 +28,10 @@
 			<?php dis_liquid_level() ?>
 		</div>
 	</div>
+	<div id="div_tube_rod">
+		<?php dis_tube_rod() ?>
+	</div>
 	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="d3.min.js"></script>
 	<script type="text/javascript" src="display.js"></script>
 </body>
 </html>
@@ -211,4 +213,30 @@ function dis_liquid_level(){
 		}
 	}
 }
+
+// 显示管柱图
+function dis_tube_rod(){
+	if(isset($_REQUEST["jinghao"])){
+		$jinghao=strtoupper($_REQUEST["jinghao"]);
+		global $JINGHAO_OIL_ARRAY;
+		$tube_rod_files=glob("../data/tube_rod/*");
+		$is_jinghao_right=false;
+		for($i=0;$i<count($JINGHAO_OIL_ARRAY);$i++){
+			if($jinghao==$JINGHAO_OIL_ARRAY[$i]){
+				$is_jinghao_right=true;
+				break;
+			}
+		}
+		$tube_rod_imgs="";
+		if($is_jinghao_right){
+			for($i=0;$i<count($tube_rod_files);$i++){
+				if(strstr($tube_rod_files[$i],$jinghao)){
+					$tube_rod_imgs.="<a class='preview' rel='$tube_rod_files[$i]'><img class='tube_rod' src='$tube_rod_files[$i]'/></a>";
+				}
+			}
+			echo $tube_rod_imgs;
+		}
+	}
+}
+
 ?>

@@ -13,11 +13,13 @@
 		<p>水井：<b><?php echo(isset($_REQUEST["jinghao"])?$_REQUEST["jinghao"]:false) ?></b> 生产数据</p>
 		<p>&nbsp</p>
 	</div>
-	<div>
+	<div id="left">
 		<?php isset($conn)?dis_daily_data($conn):false ?>
 	</div>
+	<div id="div_tube_rod">
+		<?php dis_tube_rod() ?>
+	</div>
 	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="d3.min.js"></script>
 	<script type="text/javascript" src="display.js"></script>
 </body>
 </html>
@@ -87,4 +89,30 @@ function dis_daily_data($conn){
 		echo $left_table; 
 	}
 }
+
+// 显示管柱图
+function dis_tube_rod(){
+	if(isset($_REQUEST["jinghao"])){
+		$jinghao=strtoupper($_REQUEST["jinghao"]);
+		global $JINGHAO_WATER_ARRAY;
+		$tube_rod_files=glob("../data/tube_rod/*");
+		$is_jinghao_right=false;
+		for($i=0;$i<count($JINGHAO_WATER_ARRAY);$i++){
+			if($jinghao==$JINGHAO_WATER_ARRAY[$i]){
+				$is_jinghao_right=true;
+				break;
+			}
+		}
+		$tube_rod_imgs="";
+		if($is_jinghao_right){
+			for($i=0;$i<count($tube_rod_files);$i++){
+				if(strstr($tube_rod_files[$i],$jinghao)){
+					$tube_rod_imgs.="<a class='preview' rel='$tube_rod_files[$i]'><img class='tube_rod' src='$tube_rod_files[$i]'/></a>";
+				}
+			}
+			echo $tube_rod_imgs;
+		}
+	}
+}
+
 ?>

@@ -26,15 +26,22 @@ $.fn.smartFloat=function(x){
 		var scrolls=$(this).scrollTop();
 		if(scrolls>thetop+x){
 			element.css({position:'fixed',top:0,width:wid,});
-			// element.offset({top:null,left:offsetleft,});
+			element.offset({top:null,left:offsetleft,});
 		}else{
 			element.css({position:pos,top:thetop,width:wid,});
 		}
 	});
 };
-$("#th").smartFloat(0);
-$("#right").smartFloat(0);
-// $("#tab_ul").smartFloat(10)
+// 判断元素是否存在
+if($("#th").length>0){
+	$("#th").smartFloat(0);
+}
+if($("#right").length>0){
+	$("#right").smartFloat(0);
+}
+if($("#div_tube_rod").length>0){
+	$("#div_tube_rod").smartFloat(0);
+}
 
 // 控制 #right的最大高度，给 #rigth 的内容添加单独的滚动条
 // $("#right").css("max-height",window.innerHeight-$("#top").css("height").substring(0,$("#top").css("height").length-2)-14+"px");
