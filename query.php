@@ -5,7 +5,6 @@
 	<title>query</title>
 	<link rel="stylesheet" type="text/css" href="query.css">
 	<?php require "config.php" ?>
-	<?php require "cfg_for_js.php" ?>
 </head>
 <body>
 	<div id="div_user_info">
@@ -33,6 +32,10 @@
 	?>
 	</div>
 	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		var JINGHAO_OIL_ARRAY=<?php echo json_encode($JINGHAO_OIL_ARRAY) ?>;
+		var JINGHAO_WATER_ARRAY=<?php echo json_encode($JINGHAO_WATER_ARRAY) ?>;
+	</script>
 	<script type="text/javascript" src="query.js"></script>
 </body>
 </html>
