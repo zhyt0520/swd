@@ -135,4 +135,38 @@ $(".indicator_diagram,.liquid_level,.tube_rod").dblclick(function(){
 // 滚动到文档最底部
 // scroll(0,$(document).height());
 
-// 产量曲线图
+// 绘制曲线图
+// 获取php查询结果数据
+var res=[];
+$.ajax({
+	type:"POST",
+	url:"ajax.php",
+	dataType:"json",
+	data:{"res":"res"},
+	async:false,
+	success:function(response){
+		res=response;
+	}
+});
+// 绘图
+$("div#div_chart").css({"width":"600px","height":"300px"});
+var dataPoints=new Array();
+for(var i=0;i<res.length;i++){
+	dataPoints[i]=new Object();
+	dataPoints[i].x=new Date(res[i].RiQi);
+	dataPoints[i].y=Number(res[i].RiChanYe);
+}
+console.log(dataPoints)
+var chart=new CanvasJS.Chart("chart",
+	{
+		title:{
+			text:"test"
+		},
+		data:[{
+			type:"line",
+			dataPoints:dataPoints
+		}]
+	}
+);
+chart.render();
+$("a.canvasjs-chart-credit").css("display","none");

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require "config.php";
 
 // 返回建议井号列表
@@ -34,6 +36,11 @@ if(isset($_REQUEST["mark"])&&$_REQUEST["mark"]=="JINGHAO_OIL_ARRAY"){
 // 返回水井井号
 if(isset($_REQUEST["mark"])&&$_REQUEST["mark"]=="JINGHAO_WATER_ARRAY"){
 	echo json_encode($JINGHAO_WATER_ARRAY);
+}
+
+// 从session获取数据并传递给 js
+if(isset($_REQUEST["res"])&&$_REQUEST["res"]=="res"){
+	echo json_encode($_SESSION["res"]);
 }
 
 ?>

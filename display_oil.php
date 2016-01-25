@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="display.css">
@@ -26,7 +27,7 @@
 			<?php dis_liquid_level() ?>
 		</div>
 	</div>
-	<div id="div_line_img"></div>
+	<div id="div_chart"></div>
 	<div id="div_tube_rod">
 		<?php dis_tube_rod() ?>
 	</div>
@@ -73,6 +74,10 @@ function dis_daily_data($conn){
 		$result=$conn->prepare($query);
 		$result->execute();
 		$res=$result->fetchall(PDO::FETCH_ASSOC);
+
+		// 把查询结果存入 session
+		$_SESSION["res"]=$res;
+
 		// note 返回结果数组的 key 是数据库字段名，区分大小写
 		global $FIELD_OIL_ARRAY;
 		foreach ($field_checkbox_oil as $key) {
