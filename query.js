@@ -42,6 +42,47 @@ if(custom_checked_checkbox==""){
 	});
 }
 
+// checkbox 功能按钮
+// note 区分 attr 和 prop
+$("#select_all").click(function(){
+	$("input[type='checkbox']").prop("checked",true);
+});
+$("#unselect_all").click(function(){
+	$("input[type='checkbox']").prop("checked",false);
+});
+$("#reset_default").click(function(){
+	$("input[type='checkbox']").prop("checked",false);
+	// 给油井checkbox恢复默认选择
+	for(var i=0;i<default_checked_checkbox_oil.length;i++){
+		$("input#"+default_checked_checkbox_oil[i]).prop("checked",true);
+	}
+	// 给水井checkbox恢复默认选择
+	for(var i=0;i<default_checked_checkbox_water.length;i++){
+		$("input#"+default_checked_checkbox_water[i]).prop("checked",true);
+	}
+});
+$("#save_checkbox_chose").click(function(){
+	// 用只包含0和1的字符串保存checkbox选择的数据
+	var save_checkbox_chose="";
+	$("input[type='checkbox']").each(function(){
+		if($(this).prop("checked")){
+			save_checkbox_chose+="1";
+		}else{
+			save_checkbox_chose+="0";
+		}
+	});
+	// 用javascript（非query）设置cookie
+	var today=new Date();
+	var expireDay=new Date();
+	var msPerYear=1000*60*60*24*365;
+	expireDay.setTime(today.getTime()+msPerYear);
+	document.cookie="save_checkbox_chose="+save_checkbox_chose+";expires="+expireDay.toGMTString();
+});
+$("#clear_checkbox_save").click(function(){
+	var today=new Date();
+	document.cookie="save_checkbox_chose=;expires="+today.toGMTString();
+});
+
 // 默认选中当前日期
 var mydate =new Date();
 $("select[name='begin_year'] option[value="+(mydate.getFullYear()-1)+"]").attr("selected",true);
@@ -71,6 +112,18 @@ $("input#jinghao").keyup(function(){
 		})
 	}else if($("input#jinghao").val()==""){
 		$("#hint").hide();
+	}
+});
+
+// 获取油水井井号
+$.post("ajax.php",{mark:"JINGHAO_OIL_ARRAY"},function(response){
+	if(response.length>0){
+		JINGHAO_OIL_ARRAY=eval(response);
+	}
+});
+$.post("ajax.php",{mark:"JINGHAO_WATER_ARRAY"},function(response){
+	if(response.length>0){
+		JINGHAO_WATER_ARRAY=eval(response);
 	}
 });
 
@@ -202,45 +255,4 @@ $("#input_chaxun").click(function(){
 // 清除按钮
 $("#input_qingchu").click(function(){
 	$("input#jinghao").val("");
-});
-
-// checkbox 功能按钮
-// note 区分 attr 和 prop
-$("#select_all").click(function(){
-	$("input[type='checkbox']").prop("checked",true);
-});
-$("#unselect_all").click(function(){
-	$("input[type='checkbox']").prop("checked",false);
-});
-$("#reset_default").click(function(){
-	$("input[type='checkbox']").prop("checked",false);
-	// 给油井checkbox恢复默认选择
-	for(var i=0;i<default_checked_checkbox_oil.length;i++){
-		$("input#"+default_checked_checkbox_oil[i]).prop("checked",true);
-	}
-	// 给水井checkbox恢复默认选择
-	for(var i=0;i<default_checked_checkbox_water.length;i++){
-		$("input#"+default_checked_checkbox_water[i]).prop("checked",true);
-	}
-});
-$("#save_checkbox_chose").click(function(){
-	// 用只包含0和1的字符串保存checkbox选择的数据
-	var save_checkbox_chose="";
-	$("input[type='checkbox']").each(function(){
-		if($(this).prop("checked")){
-			save_checkbox_chose+="1";
-		}else{
-			save_checkbox_chose+="0";
-		}
-	});
-	// 用javascript（非query）设置cookie
-	var today=new Date();
-	var expireDay=new Date();
-	var msPerYear=1000*60*60*24*365;
-	expireDay.setTime(today.getTime()+msPerYear);
-	document.cookie="save_checkbox_chose="+save_checkbox_chose+";expires="+expireDay.toGMTString();
-});
-$("#clear_checkbox_save").click(function(){
-	var today=new Date();
-	document.cookie="save_checkbox_chose=;expires="+today.toGMTString();
 });

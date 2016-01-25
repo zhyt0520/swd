@@ -32,10 +32,6 @@
 	?>
 	</div>
 	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-	<script type="text/javascript">
-		var JINGHAO_OIL_ARRAY=<?php echo json_encode($JINGHAO_OIL_ARRAY) ?>;
-		var JINGHAO_WATER_ARRAY=<?php echo json_encode($JINGHAO_WATER_ARRAY) ?>;
-	</script>
 	<script type="text/javascript" src="query.js"></script>
 </body>
 </html>

@@ -26,4 +26,14 @@ if(isset($_REQUEST["mark"],$_REQUEST["sub_jinghao"])&&$_REQUEST["mark"]=="hint"&
 	}
 }
 
+// 返回油井井号
+if(isset($_REQUEST["mark"])&&$_REQUEST["mark"]=="JINGHAO_OIL_ARRAY"){
+	echo json_encode($JINGHAO_OIL_ARRAY);
+}
+
+// 返回水井井号
+if(isset($_REQUEST["mark"])&&$_REQUEST["mark"]=="JINGHAO_WATER_ARRAY"){
+	echo json_encode($JINGHAO_WATER_ARRAY);
+}
+
 ?>

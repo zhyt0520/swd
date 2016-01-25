@@ -158,6 +158,10 @@ ul{
 #tab_content_1{
 	display: block;
 }
+/*曲线图*/
+#div_line_img{
+	display: inline-block;
+}
 /*管柱图*/
 #div_tube_rod{
 	display: inline-block;
