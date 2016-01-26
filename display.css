@@ -165,8 +165,9 @@ ul{
 /*管柱图*/
 #div_tube_rod{
 	display: inline-block;
-	width: auto;
+	width: 600px;
 }
 .tube_rod{
 	max-width: 300px;
+	display: inline-block;
 }

@@ -141,11 +141,14 @@ var res=[];
 $.ajax({
 	type:"POST",
 	url:"ajax.php",
-	dataType:"json",
+	// dataType:"json",
 	data:{"res":"res"},
 	async:false,
+	complete:function(xhr,status){
+		// console.log(status);
+	},
 	success:function(response){
-		res=response;
+		res=eval(response);
 	}
 });
 // 绘图
@@ -153,14 +156,13 @@ $("div#div_chart").css({"width":"600px","height":"300px"});
 var dataPoints=new Array();
 for(var i=0;i<res.length;i++){
 	dataPoints[i]=new Object();
-	dataPoints[i].x=new Date(res[i].RiQi);
-	dataPoints[i].y=Number(res[i].RiChanYe);
+	// dataPoints[i].x=new Date(res[i].RQ);
+	dataPoints[i].y=Number(res[i].RCYL1);
 }
-console.log(dataPoints)
-var chart=new CanvasJS.Chart("chart",
+var chart=new CanvasJS.Chart("div_chart",
 	{
 		title:{
-			text:"test"
+			text:"产量曲线"
 		},
 		data:[{
 			type:"line",

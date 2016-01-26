@@ -27,11 +27,13 @@
 			<?php dis_liquid_level() ?>
 		</div>
 	</div>
-	<div id="div_chart"></div>
+
 	<div id="div_tube_rod">
+		<div id="div_chart"></div>
 		<?php dis_tube_rod() ?>
 	</div>
 	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="canvasjs.min.js"></script>
 	<script type="text/javascript" src="display.js"></script>
 </body>
 </html>
