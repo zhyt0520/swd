@@ -20,7 +20,7 @@ $.fn.smartFloat=function(x){
 	var offsetleft=element.offset().left;
 	var offsettop=element.offset().top;
 	for(var i=0;i<dis_column.length;i++){
-		$("."+dis_column[i]).css("width",(parseInt(dis_column_width[dis_column[i]])+1)+"px");
+		$("."+dis_column[i]).css("width",(Number(dis_column_width[dis_column[i]])+1)+"px");
 	}
 	$(window).scroll(function(){
 		var scrolls=$(this).scrollTop();
@@ -84,6 +84,7 @@ this.imagePreview = function(){
 		this.title = this.t;
 		$("#preview").remove();
 	});
+	// 控制浮动图片的显示位置，不要超出窗口边界
 	$("a.preview").mousemove(function(e){
 		if(e.clientX+dx<=0){
 			x=0;
@@ -151,8 +152,9 @@ $.ajax({
 		res=eval(response);
 	}
 });
-// 绘图
+// 设置长宽
 $("div#div_chart").css({"width":"600px","height":"300px"});
+// 从 res 中获取数据列
 var richanye=new Array();
 var richanyou=new Array();
 var hanshui=new Array();
@@ -169,6 +171,10 @@ for(var i=0;i<res.length;i++){
 	hanshui[i].x=new Date(res[i].RQ);
 	hanshui[i].y=Number(res[i].HS);
 }
+// 把绘图基本参数设置成全局变量
+var dataName=["日产液","日产油","含水"];
+var color=["brown","red","green"];
+// 开始绘图
 var chart=new CanvasJS.Chart("div_chart",
 	{
 		zoomEnabled:true,
@@ -178,36 +184,41 @@ var chart=new CanvasJS.Chart("div_chart",
 		toolTip: {
 			shared:true,
 			borderColor: "#aaa",
+			fontFamily:"Microsoft YaHei",
 			contentFormatter:function(e){
-				var content=e.entries[0].dataPoint.x+"<br/>";
+				// var fullYear=e.entries[0].dataPoint.x.getFullYear();
+				var month=e.entries[0].dataPoint.x.getMonth();
+				var date=e.entries[0].dataPoint.x.getDate();
+				var content=month+"月"+date+"日<br/>";
 				for(var i=0;i<e.entries.length;i++){
-					content+="<strong>"+e.entries[i].dataPoint.y+"</strong><br/>";
+					content+="<span style='color:"+color[i]+"'>"+dataName[i]+"：<strong>"+e.entries[i].dataPoint.y+"</strong></span><br/>";
 				}
 				return content;
 			}
 		},
-		axisX:{  
+		axisX:{
 			valueFormatString:"YYYY-M-D"
 		},
 		data:[
 			{
 				type:"line",
-				color:"brown",
+				color:color[0],
 				dataPoints:richanye
 			},
 			{
 				type:"line",
-				color:"red",
+				color:color[1],
 				dataPoints:richanyou
 			},
 			{
 				type:"line",
 				axisYType:"secondary",
-				color:"Green",
+				color:color[2],
 				dataPoints:hanshui
 			},
 		]
 	}
 );
 chart.render();
+// 隐藏广告链接
 $("a.canvasjs-chart-credit").css("display","none");
