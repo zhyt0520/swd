@@ -153,21 +153,60 @@ $.ajax({
 });
 // 绘图
 $("div#div_chart").css({"width":"600px","height":"300px"});
-var dataPoints=new Array();
+var richanye=new Array();
+var richanyou=new Array();
+var hanshui=new Array();
 for(var i=0;i<res.length;i++){
-	dataPoints[i]=new Object();
-	// dataPoints[i].x=new Date(res[i].RQ);
-	dataPoints[i].y=Number(res[i].RCYL1);
+	richanye[i]=new Object();
+	richanye[i].x=new Date(res[i].RQ);
+	richanye[i].y=Number(res[i].RCYL1);
+
+	richanyou[i]=new Object();
+	richanyou[i].x=new Date(res[i].RQ);
+	richanyou[i].y=Number(res[i].RCYL);
+
+	hanshui[i]=new Object();
+	hanshui[i].x=new Date(res[i].RQ);
+	hanshui[i].y=Number(res[i].HS);
 }
 var chart=new CanvasJS.Chart("div_chart",
 	{
+		zoomEnabled:true,
 		title:{
 			text:"产量曲线"
 		},
-		data:[{
-			type:"line",
-			dataPoints:dataPoints
-		}]
+		toolTip: {
+			shared:true,
+			borderColor: "#aaa",
+			contentFormatter:function(e){
+				var content=e.entries[0].dataPoint.x+"<br/>";
+				for(var i=0;i<e.entries.length;i++){
+					content+="<strong>"+e.entries[i].dataPoint.y+"</strong><br/>";
+				}
+				return content;
+			}
+		},
+		axisX:{  
+			valueFormatString:"YYYY-M-D"
+		},
+		data:[
+			{
+				type:"line",
+				color:"brown",
+				dataPoints:richanye
+			},
+			{
+				type:"line",
+				color:"red",
+				dataPoints:richanyou
+			},
+			{
+				type:"line",
+				axisYType:"secondary",
+				color:"Green",
+				dataPoints:hanshui
+			},
+		]
 	}
 );
 chart.render();

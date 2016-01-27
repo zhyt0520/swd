@@ -8,6 +8,7 @@ body{
 	height: auto;
 	text-align: center;
 	margin: 0px;
+	border-bottom: 1px solid #000;
 }
 #top p{
 	vertical-align: middle;
