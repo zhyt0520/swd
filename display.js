@@ -191,7 +191,7 @@ var chart=new CanvasJS.Chart("div_chart",
 			fontFamily:"Microsoft YaHei",
 			contentFormatter:function(e){
 				// var fullYear=e.entries[0].dataPoint.x.getFullYear();
-				var month=e.entries[0].dataPoint.x.getMonth();
+				var month=e.entries[0].dataPoint.x.getMonth()+1;
 				var date=e.entries[0].dataPoint.x.getDate();
 				var content=month+"月"+date+"日<br/>";
 				for(var i=0;i<e.entries.length;i++){
