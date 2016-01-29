@@ -179,7 +179,11 @@ var chart=new CanvasJS.Chart("div_chart",
 	{
 		zoomEnabled:true,
 		title:{
-			text:"产量曲线"
+			text:"生产曲线"
+		},
+		legend:{
+			horizontalAlign:"center", // left, center ,right 
+			verticalAlign:"top",  // top, center, bottom
 		},
 		toolTip: {
 			shared:true,
@@ -202,16 +206,22 @@ var chart=new CanvasJS.Chart("div_chart",
 		data:[
 			{
 				type:"line",
+				showInLegend: true,
+				name:dataName[0],
 				color:color[0],
 				dataPoints:richanye
 			},
 			{
 				type:"line",
+				showInLegend: true,
+				name:dataName[1],
 				color:color[1],
 				dataPoints:richanyou
 			},
 			{
 				type:"line",
+				showInLegend: true,
+				name:dataName[2],
 				axisYType:"secondary",
 				color:color[2],
 				dataPoints:hanshui
