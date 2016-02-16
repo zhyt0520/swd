@@ -162,8 +162,8 @@ function dis_indicator_diagram(){
 			$end_time=mktime(0,0,0,$_REQUEST["end_month"],$_REQUEST["end_day"],$_REQUEST["end_year"]);
 			$right_imgs_time=[];
 			for($i=0;$i<count($right_imgs_date);$i++){
-				// note mktime 第6个参数，如果不添加 0+ 会报 warning，说第6个参数期望long，给的string
-				$right_imgs_time[$i]=mktime(0,0,0,substr($right_imgs_date[$i],5,2),substr($right_imgs_date[$i],8,2),0+substr($right_imgs_date[$i],0,4));
+				// note mktime 参数，如果不添加 0+ 会报 warning，参数期望long，给的string
+				$right_imgs_time[$i]=mktime(0,0,0,0+substr($right_imgs_date[$i],5,2),0+substr($right_imgs_date[$i],8,2),0+substr($right_imgs_date[$i],0,4));
 			}
 			// html 输出 p 和 img
 			$right_imgs="";
