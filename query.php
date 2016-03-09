@@ -24,11 +24,11 @@
 	</div>
 	<div id="query">
 	<?php
-		if(isset($_SESSION["is_login"])&&$_SESSION["is_login"]=="login_yes"){
+		// if(isset($_SESSION["is_login"])&&$_SESSION["is_login"]=="login_yes"){
 			dis_query_form();
-		}else{
-			header("Location:index.php");
-		}
+		// }else{
+			// header("Location:index.php");
+		// }
 	?>
 	</div>
 	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>

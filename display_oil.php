@@ -17,8 +17,10 @@
 	</div>
 	<div id="right">
 		<ul id="tab_ul">
-			<li class="tab_head tab_selected" id="tab_1">功图</li>
+			<li class="tab_head tab_unselected" id="tab_1">功图</li>
 			<li class="tab_head tab_unselected" id="tab_2">液面</li>
+			<li class="tab_head tab_unselected" id="tab_3">生产曲线</li>
+			<li class="tab_head tab_selected" id="tab_4">管柱图</li>
 		</ul>
 		<div class="tab_content" id="tab_content_1">
 			<?php dis_indicator_diagram() ?>
@@ -26,11 +28,12 @@
 		<div class="tab_content" id="tab_content_2">
 			<?php dis_liquid_level() ?>
 		</div>
-	</div>
-
-	<div id="div_tube_rod">
-		<div id="div_chart"></div>
-		<?php dis_tube_rod() ?>
+		<div class="tab_content" id="tab_content_3">
+			<div id="div_chart"></div>
+		</div>
+		<div class="tab_content" id="tab_content_4">
+			<?php dis_tube_rod() ?>
+		</div>
 	</div>
 	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="canvasjs.min.js"></script>
