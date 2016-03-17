@@ -153,7 +153,7 @@ $.ajax({
 	}
 });
 // 设置长宽
-$("div#div_chart").css({"width":"800px","height":"600px"});
+$("div#div_chart").css({"width":"100%","height":"300px"});
 // 从 res 中获取数据列
 var richanye=new Array();
 var richanyou=new Array();
