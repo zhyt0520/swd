@@ -10,8 +10,8 @@ define("DB_USER", "swd");
 define("DB_PASSWORD", "123456");
 
 // 二、远程数据库
-define("DB_HOST_REMOTE", "10.86.10.50");
-define("DB_NAME_REMOTE", "oracle10");
+define("DB_HOST_REMOTE", "10.86.13.188");
+define("DB_NAME_REMOTE", "oracle9");
 define("DB_PORT_REMOTE", 1521);
 define("DB_TABLE_oil_well_data","DBA01");
 define("DB_TABLE_water_well_data","DBA02");
