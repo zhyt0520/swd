@@ -150,7 +150,7 @@ $.ajax({
 	},
 	success:function(response){
 		res=eval(response);
-	}
+	},
 });
 // 设置长宽
 $("div#div_chart").css({"width":"100%","height":"300px"});

@@ -86,8 +86,10 @@ function dis_daily_data($conn){
 		// ！！！ note 时间需要用花括号括起来，而且加ts，不懂……
 		$query="select ".$field_str." from ".DB_TABLE_oil_well_data." where RQ>={ts'".$begin_riqi."'} and RQ<={ts'".$end_riqi."'} and JH='".$jinghao."'";
 		$result=odbc_exec($conn,$query);
+		$num_rows=odbc_exec($conn,"select count(*) from ".DB_TABLE_oil_well_data." where RQ>={ts'".$begin_riqi."'} and RQ<={ts'".$end_riqi."'} and JH='".$jinghao."'");
+		$num_rows=odbc_result($num_rows,1);
 		$res=[];
-		for($i=0;odbc_fetch_row($result);$i++){
+		for($i=0;$i<$num_rows;$i++){
 			$res[$i]=odbc_fetch_array($result);
 		}
 
