@@ -16,8 +16,15 @@ function connect_db(){
 
 // 连接远程数据库
 function connect_db_remote(){
-	$sdn="oci:dbname=".DB_HOST_REMOTE.":".DB_PORT_REMOTE."/".DB_NAME_REMOTE.";charset=zhs16gbk";
-	$conn=new PDO ($sdn,DB_USER_REMOTE,DB_PASSWORD_REMOTE);
+	// 用pdo查询
+	// $sdn="oci:dbname=".DB_HOST_REMOTE.":".DB_PORT_REMOTE."/".DB_NAME_REMOTE.";charset=zhs16gbk";
+	// $conn=new PDO ($sdn,DB_USER_REMOTE,DB_PASSWORD_REMOTE);
+	// if(isset($conn)){
+	// 	return $conn;
+	// }
+	
+	// 用odbc查询
+	$conn=odbc_connect('welldata','jd','jd');
 	if(isset($conn)){
 		return $conn;
 	}

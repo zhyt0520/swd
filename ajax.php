@@ -41,7 +41,7 @@ if(isset($_REQUEST["mark"])&&$_REQUEST["mark"]=="JINGHAO_WATER_ARRAY"){
 // 从session获取数据并传递给 js
 if(isset($_REQUEST["res"])&&$_REQUEST["res"]=="res"){
 	for($i=0;$i<count($_SESSION["res"]);$i++){
-		$_SESSION["res"][$i]["RQ"]=date_format(date_create(iconv("gb2312","utf-8//IGNORE",$_SESSION["res"][$i]["RQ"])),"Y-m-d");
+	// 	$_SESSION["res"][$i]["RQ"]=date_format(date_create(iconv("gb2312","utf-8//IGNORE",$_SESSION["res"][$i]["RQ"])),"Y-m-d");
 		$_SESSION["res"][$i]["BZ"]=iconv("gb2312","utf-8//IGNORE",$_SESSION["res"][$i]["BZ"]);
 	}
 	echo json_encode($_SESSION["res"]);

@@ -61,8 +61,8 @@ function dis_daily_data($conn){
 		$begin_riqi=$_REQUEST["begin_year"]."-".$_REQUEST["begin_month"]."-".$_REQUEST["begin_day"];
 		$end_riqi=$_REQUEST["end_year"]."-".$_REQUEST["end_month"]."-".$_REQUEST["end_day"];
 		// 转换日期格式
-		$begin_riqi=date_format(date_create($begin_riqi),"d-M-y");
-		$end_riqi=date_format(date_create($end_riqi),"d-M-y");
+		// $begin_riqi=date_format(date_create($begin_riqi),"d-M-y");
+		// $end_riqi=date_format(date_create($end_riqi),"d-M-y");
 
 		$jinghao=$_REQUEST["jinghao"];
 
@@ -75,10 +75,23 @@ function dis_daily_data($conn){
 		// 删除最后多余的一个逗号
 		$field_str=substr($field_str,0,strlen($field_str)-1);
 		// note 查询输入的字符串需要带引号
-		$query="select ".$field_str." from ".DB_TABLE_oil_well_data." where RQ>='".$begin_riqi."' and RQ<='".$end_riqi."' and JH='".$jinghao."'";
-		$result=$conn->prepare($query);
-		$result->execute();
-		$res=$result->fetchall(PDO::FETCH_ASSOC);
+
+		// 用pdo查询
+		// $query="select ".$field_str." from ".DB_TABLE_oil_well_data." where RQ>='".$begin_riqi."' and RQ<='".$end_riqi."' and JH='".$jinghao."'";
+		// $result=$conn->prepare($query);
+		// $result->execute();
+		// $res=$result->fetchall(PDO::FETCH_ASSOC);
+
+		// 用odbc查询
+		// ！！！ note 时间需要用花括号括起来，而且加ts，不懂……
+		$query="select ".$field_str." from ".DB_TABLE_oil_well_data." where RQ>={ts'".$begin_riqi."'} and RQ<={ts'".$end_riqi."'} and JH='".$jinghao."'";
+		$result=odbc_exec($conn,$query);
+		$num_rows=odbc_exec($conn,"select count(*) from ".DB_TABLE_oil_well_data." where RQ>={ts'".$begin_riqi."'} and RQ<={ts'".$end_riqi."'} and JH='".$jinghao."'");
+		$num_rows=odbc_result($num_rows,1);
+		$res=[];
+		for($i=0;$i<$num_rows;$i++){
+			$res[$i]=odbc_fetch_array($result);
+		}
 
 		// 把查询结果存入 session
 		$_SESSION["res"]=$res;
